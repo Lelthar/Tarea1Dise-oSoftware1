@@ -20,7 +20,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        //elControlador = new Controlador();
+        elControlador = new Controlador();
     }
 
     /**
@@ -52,7 +52,7 @@ public class GUI extends javax.swing.JFrame {
         lbSalidas = new javax.swing.JList<>();
         jLabel7 = new javax.swing.JLabel();
         AlfabetoEntrada = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbAlfabeto = new javax.swing.JButton();
         NombreAlfabeto = new javax.swing.JTextField();
         jButtonEjecutar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -177,7 +177,12 @@ public class GUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Ingreso Alfabeto:");
 
-        jButton1.setText("Guardar");
+        jbAlfabeto.setText("Guardar");
+        jbAlfabeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlfabetoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -204,7 +209,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(AlfabetoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jbAlfabeto)
                                 .addGap(98, 98, 98))))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -224,7 +229,7 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(AlfabetoEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jbAlfabeto)
                         .addGap(7, 7, 7))))
         );
 
@@ -289,10 +294,16 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
         // TODO add your handling code here:
-        elControlador = new Controlador();
+        //elControlador = new Controlador();
         //Enviar Datos
         
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
+
+    private void jbAlfabetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlfabetoActionPerformed
+        // TODO add your handling code here:
+        String alfabeto = this.AlfabetoEntrada.getText();
+        elControlador.cargarAlfabetos(alfabeto);
+    }//GEN-LAST:event_jbAlfabetoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,7 +345,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField NombreAlfabeto;
     private javax.swing.JTextArea Resultados;
     private javax.swing.JComboBox<String> cbAlfabeto;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEjecutar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -351,6 +361,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbAlfabeto;
     private javax.swing.JList<String> lbSalidas;
     private javax.swing.JRadioButton modoCodificación;
     private javax.swing.JTextField vFaseOrigen;

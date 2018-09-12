@@ -312,7 +312,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbAlfabeto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -340,7 +340,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="AlfabetoEntrada" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbAlfabeto" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -386,10 +386,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="AlfabetoEntrada">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jbAlfabeto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAlfabetoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="NombreAlfabeto">
         </Component>

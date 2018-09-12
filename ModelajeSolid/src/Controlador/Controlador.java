@@ -26,9 +26,9 @@ public class Controlador implements iValidable  {
     public Controlador() {
     }
     
-    public ArrayList<Alfabeto> cargarAlfabetos(){
-        
-        return null;
+    public boolean cargarAlfabetos(String alfabeto){
+
+        return false;
     }
     
     public void procesarPeticion(DTOAlgoritmos leDTO){
