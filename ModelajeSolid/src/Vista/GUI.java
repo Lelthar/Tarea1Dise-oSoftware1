@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Modelo.Algoritmo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -31,8 +32,16 @@ public class GUI extends javax.swing.JFrame {
         modelAlgoritmos = new DefaultListModel<>();
         escritura = new ArrayList<>();
         algoritmos = new ArrayList<>();
+        cargarAlgoritmosGUI();
     }
 
+    public void cargarAlgoritmosGUI(){
+        DefaultListModel<String> model = new DefaultListModel<>(); 
+        for (Algoritmo algoritmo : elControlador.getAlgoritmos().getAlgoritmos()) {
+           model.addElement(algoritmo.getNombreAlgoritmo());
+        }
+        this.lbAlgoritmoE.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

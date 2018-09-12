@@ -11,16 +11,9 @@ package Modelo;
  */
 public class Vigenere extends Algoritmo{
     
-    private String nombreAlgoritmo;
-    
     public Vigenere(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
     }
-
-    public String getNombreAlgoritmo() {
-        return nombreAlgoritmo;
-    }
-    
     
     @Override
     public String Codificar(String mensaje){
