@@ -9,6 +9,10 @@ package Modelo;
  *
  * @author josed
  */
-public class EscritorXML {
+public class EscritorXML implements DTOEscritor {
+    
+       public boolean Escribir(String Dto){
+        return true;
+    }
     
 }
