@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class EscritorTXT  implements iEscritor {
     
+    @Override
     public boolean Escribir(String Dto){
         //Obtiene la fecha actual en el sistema
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  

@@ -5,11 +5,14 @@
  */
 package Modelo;
 
+import Controlador.DTOAlgoritmos;
+import Controlador.DtoAlfabeto;
+
 /**
  *
  * @author josed
  */
-public class Alfabeto {
+public class Alfabeto implements DtoAlfabeto {
     
     private int id ; 
     private String nombre;
@@ -21,9 +24,10 @@ public class Alfabeto {
         this.nombre = nombre; 
         this.simbolos = simbolos;
     }
-    
-    public boolean Validar(String s){
-        return true;
+
+    @Override
+    public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

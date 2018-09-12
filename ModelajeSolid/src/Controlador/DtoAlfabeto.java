@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Controlador;
 
 /**
  *
- * @author josed
+ * @author gerald
  */
-public class EscritorXML implements iEscritor {
-    
-    @Override
-    public boolean Escribir(String Dto){
-        return true;
-    }
-    
+public interface DtoAlfabeto {
+    // Recibe como parametro DTO, por ahora es un string
+    public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos);
+
 }

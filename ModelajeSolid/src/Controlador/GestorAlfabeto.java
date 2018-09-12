@@ -9,11 +9,12 @@ package Controlador;
  *
  * @author gerald
  */
-public class Controlador implements DtoAlfabeto  {
+public class GestorAlfabeto implements DtoAlfabeto {
 
     @Override
     public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
