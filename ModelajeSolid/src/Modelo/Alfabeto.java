@@ -6,13 +6,13 @@
 package Modelo;
 
 import Controlador.DTOAlgoritmos;
-import Controlador.DtoAlfabeto;
+import Controlador.iValidable;
 
 /**
  *
  * @author josed
  */
-public class Alfabeto implements DtoAlfabeto {
+public class Alfabeto implements iValidable {
     
     private int id ; 
     private String nombre;
@@ -26,7 +26,7 @@ public class Alfabeto implements DtoAlfabeto {
     }
 
     @Override
-    public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos) {
+    public boolean Validar(DTOAlgoritmos DtoAlgoritmos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

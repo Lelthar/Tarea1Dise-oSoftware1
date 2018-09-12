@@ -5,15 +5,49 @@
  */
 package Controlador;
 
+import Modelo.Alfabeto;
+import java.util.ArrayList;
+
 /**
  *
  * @author gerald
  */
-public class Controlador implements DtoAlfabeto  {
+public class Controlador implements iValidable  {
 
+    private Alfabeto alfabetoActual;
+    
+    public ArrayList<Alfabeto> cargarAlfabetos(){
+        
+        return null;
+    }
+    
+    public void procesarPeticion(DTOAlgoritmos leDTO){
+        
+    }
+    
+    public void predefinirAlfabeto(DTOAlgoritmos elDTO){
+        
+    }
+    
+    public void activarAlgoritmos(DTOAlgoritmos elDTO){
+        
+    }
+    
+    public void escribir(DTOAlgoritmos elDTO){
+        
+    }    
     @Override
-    public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos) {
+    public boolean Validar(DTOAlgoritmos DtoAlgoritmos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Alfabeto getAlfabetoActual() {
+        return alfabetoActual;
+    }
+
+    public void setAlfabetoActual(Alfabeto alfabetoActual) {
+        this.alfabetoActual = alfabetoActual;
+    }
+    
     
 }

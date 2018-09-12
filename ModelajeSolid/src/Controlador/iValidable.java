@@ -9,8 +9,8 @@ package Controlador;
  *
  * @author gerald
  */
-public interface DtoAlfabeto {
+public interface iValidable {
     // Recibe como parametro DTO, por ahora es un string
-    public boolean ValidarEntrada(DTOAlgoritmos DtoAlgoritmos);
+    public boolean Validar(DTOAlgoritmos DtoAlgoritmos);
 
 }

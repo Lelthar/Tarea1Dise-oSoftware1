@@ -23,11 +23,11 @@ public class CodigoTelefonico extends Algoritmo {
     public String Codificar(String mensaje){
         
         
-        return "Gerald";
+        return "Debe ser programado por Gerald Codificar";
     }
     @Override
     public String Decodificar(String mensaje){
-        return "Hazel <3";
+        return "Debe ser programado por Gerald Decodificar";
     }
     
    
