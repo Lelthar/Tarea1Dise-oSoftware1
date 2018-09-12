@@ -9,6 +9,11 @@ package Modelo;
  *
  * @author josed
  */
-public class EscritorPDF {
+public class EscritorPDF implements DTOEscritor {
+    
+    public boolean Escribir(String Dto){
+        return true;
+    }
+
     
 }
