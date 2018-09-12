@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Alfabeto;
+import Modelo.iEscritor;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,13 @@ import java.util.ArrayList;
 public class Controlador implements iValidable  {
 
     private Alfabeto alfabetoActual;
+    
+    //Por asociaciones
+    private GestorAlfabeto gestorAlfabeto;
+    private iEscritor elEscritor;
+
+    public Controlador() {
+    }
     
     public ArrayList<Alfabeto> cargarAlfabetos(){
         
@@ -49,5 +57,12 @@ public class Controlador implements iValidable  {
         this.alfabetoActual = alfabetoActual;
     }
     
+        public GestorAlfabeto getGestorAlfabeto() {
+        return gestorAlfabeto;
+    }
+
+    public void setGestorAlfabeto(GestorAlfabeto gestorAlfabeto) {
+        this.gestorAlfabeto = gestorAlfabeto;
+    }
     
 }

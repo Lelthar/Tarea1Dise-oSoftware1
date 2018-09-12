@@ -11,10 +11,7 @@ import Controlador.DTOAlgoritmos;
  *
  * @author josed
  */
-public interface iEscritor {
-    
-    
-    
+public interface iEscritor {    
     
     // Recibe como parametro DTO, por ahora es un string
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos);

@@ -5,17 +5,22 @@
  */
 package Vista;
 
+import Controlador.Controlador;
+
 /**
  *
  * @author Rigo-PC
  */
 public class GUI extends javax.swing.JFrame {
-
+    
+    private Controlador elControlador;
+    
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        //elControlador = new Controlador();
     }
 
     /**
@@ -187,13 +192,11 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addContainerGap(116, Short.MAX_VALUE))
+                            .addComponent(jLabel7)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(NombreAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(NombreAlfabeto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,6 +230,11 @@ public class GUI extends javax.swing.JFrame {
 
         jButtonEjecutar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonEjecutar.setText("Ejecutar");
+        jButtonEjecutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEjecutarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,6 +286,13 @@ public class GUI extends javax.swing.JFrame {
     private void modoCodificaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modoCodificaciónActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modoCodificaciónActionPerformed
+
+    private void jButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEjecutarActionPerformed
+        // TODO add your handling code here:
+        elControlador = new Controlador();
+        //Enviar Datos
+        
+    }//GEN-LAST:event_jButtonEjecutarActionPerformed
 
     /**
      * @param args the command line arguments
