@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.Resultado;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class DTOAlgoritmos {
     private String fraseOrigen;
     private ArrayList<Integer> algoritmosSeleccionados;
     private ArrayList<Integer> salidasSeleccionadas;
-    private String resultadoAlgoritmo;
+    private ArrayList<Resultado> resultadoAlgoritmos;
     private boolean modoAlgoritmo;
 
     public DTOAlgoritmos() {
@@ -54,12 +55,12 @@ public class DTOAlgoritmos {
         this.salidasSeleccionadas = salidasSeleccionadas;
     }
 
-    public String getResultadoAlgoritmo() {
-        return resultadoAlgoritmo;
+    public ArrayList<Resultado> getResultadoAlgoritmo() {
+        return resultadoAlgoritmos;
     }
 
-    public void setResultadoAlgoritmo(String resultadoAlgoritmo) {
-        this.resultadoAlgoritmo = resultadoAlgoritmo;
+    public void setResultadoAlgoritmo(ArrayList<Resultado> resultadoAlgoritmo) {
+        this.resultadoAlgoritmos = resultadoAlgoritmo;
     }
 
     public boolean isModoAlgoritmo() {

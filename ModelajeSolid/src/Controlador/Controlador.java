@@ -21,7 +21,7 @@ public class Controlador implements iValidable  {
     //Por asociaciones
     private GestorAlfabeto gestorAlfabeto;
     private iEscritor elEscritor;
-    private  Algoritmo elAlgoritmo;
+    private  GestorAlgoritmos gestorAlgoritmos;
 
     public Controlador() {
     }
@@ -67,12 +67,12 @@ public class Controlador implements iValidable  {
         this.gestorAlfabeto = gestorAlfabeto;
     }
 
-    public Algoritmo getElAlgoritmo() {
-        return elAlgoritmo;
+    public GestorAlgoritmos getElAlgoritmo() {
+        return gestorAlgoritmos;
     }
 
-    public void setElAlgoritmo(Algoritmo elAlgoritmo) {
-        this.elAlgoritmo = elAlgoritmo;
+    public void setElAlgoritmo(GestorAlgoritmos elAlgoritmo) {
+        this.gestorAlgoritmos = elAlgoritmo;
     }
     
     
