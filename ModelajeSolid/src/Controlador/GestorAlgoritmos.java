@@ -19,6 +19,8 @@ public class GestorAlgoritmos {
     private ArrayList<Algoritmo> algoritmos;
 
     public GestorAlgoritmos() {
+        algoritmos = new ArrayList<>();
+        cargarAlgoritmos();
     }
 
     public ArrayList<Algoritmo> getAlgoritmos() {
