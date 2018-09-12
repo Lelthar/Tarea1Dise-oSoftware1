@@ -59,7 +59,7 @@ public class Controlador implements iValidable  {
         this.alfabetoActual = alfabetoActual;
     }
     
-        public GestorAlfabeto getGestorAlfabeto() {
+    public GestorAlfabeto getGestorAlfabeto() {
         return gestorAlfabeto;
     }
 

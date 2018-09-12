@@ -7,6 +7,7 @@ package Modelo;
 
 import Controlador.DTOAlgoritmos;
 import Controlador.iValidable;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,9 +17,9 @@ public class Alfabeto implements iValidable {
     
     private int id ; 
     private String nombre;
-    private String simbolos;
+    private ArrayList<Character> simbolos;
     
-    public Alfabeto(int id, String nombre, String simbolos){
+    public Alfabeto(int id, String nombre, ArrayList<Character> simbolos){
         
         this.id = id;
         this.nombre = nombre; 
