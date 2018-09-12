@@ -7,8 +7,12 @@ package Controlador;
 
 import Modelo.Algoritmo;
 import Modelo.CodigoTelefonico;
+import Modelo.EscritorPDF;
+import Modelo.EscritorTXT;
+import Modelo.EscritorXML;
 import Modelo.Transposicion;
 import Modelo.Vigenere;
+import Modelo.iEscritor;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +21,13 @@ import java.util.ArrayList;
  */
 public class GestorAlgoritmos {
     private ArrayList<Algoritmo> algoritmos;
-
+    private ArrayList<iEscritor> modoEscritura;
+    
     public GestorAlgoritmos() {
         algoritmos = new ArrayList<>();
+        modoEscritura = new ArrayList<>();
         cargarAlgoritmos();
+        cargarModoEscritura();
     }
 
     public ArrayList<Algoritmo> getAlgoritmos() {
@@ -30,6 +37,14 @@ public class GestorAlgoritmos {
     public void setAlgoritmos(ArrayList<Algoritmo> algoritmos) {
         this.algoritmos = algoritmos;
     }
+
+    public ArrayList<iEscritor> getModoEscritura() {
+        return modoEscritura;
+    }
+
+    public void setModoEscritura(ArrayList<iEscritor> modoEscritura) {
+        this.modoEscritura = modoEscritura;
+    }
     
     public void cargarAlgoritmos() {
         Algoritmo vigenere = new Vigenere(0,"Vigenere");
@@ -37,8 +52,16 @@ public class GestorAlgoritmos {
         Algoritmo transposicion = new Transposicion(2,"Transposición");
         this.algoritmos.add(vigenere);
         this.algoritmos.add(codigoTelefonico);
-        this.algoritmos.add(transposicion);
-        
+        this.algoritmos.add(transposicion);      
+    }
+    
+    public void cargarModoEscritura(){
+        iEscritor escrituraPDF = new EscritorPDF();
+        iEscritor escrituraTXT = new EscritorTXT();
+        iEscritor escrituraXML = new EscritorXML();
+        this.modoEscritura.add(escrituraTXT);
+        this.modoEscritura.add(escrituraPDF);
+        this.modoEscritura.add(escrituraXML);
     }
     
 }

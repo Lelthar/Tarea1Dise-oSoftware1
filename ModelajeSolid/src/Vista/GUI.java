@@ -39,7 +39,6 @@ public class GUI extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>(); 
         for (Algoritmo algoritmo : elControlador.getAlgoritmos().getAlgoritmos()) {
            model.addElement(algoritmo.getNombreAlgoritmo());
-            System.out.println(algoritmo.getNombreAlgoritmo());
         }
         this.lbAlgoritmoE.setModel(model);
     }
@@ -223,6 +222,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Tipo de Escritura:");
 
+        lbSalidasE.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "TXT", "PDF", "XML" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         lbSalidasE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbSalidasEMouseClicked(evt);
