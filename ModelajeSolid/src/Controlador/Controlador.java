@@ -25,6 +25,7 @@ public class Controlador implements iValidable  {
 
     public Controlador() {
         gestorAlgoritmos = new GestorAlgoritmos();
+        gestorAlfabeto = new GestorAlfabeto(new ArrayList<>());
     }
     
     public boolean cargarAlfabetos(String alfabeto){
@@ -75,7 +76,5 @@ public class Controlador implements iValidable  {
     public void setAlgoritmos(GestorAlgoritmos elAlgoritmo) {
         this.gestorAlgoritmos = elAlgoritmo;
     }
-    
-    
-    
+        
 }

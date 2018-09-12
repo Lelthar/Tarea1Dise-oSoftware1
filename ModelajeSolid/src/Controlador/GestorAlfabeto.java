@@ -16,6 +16,11 @@ public class GestorAlfabeto implements iValidable {
     
     private ArrayList<Alfabeto> alfabetos; 
 
+    public GestorAlfabeto(ArrayList<Alfabeto> alfabetos) {
+        this.alfabetos = alfabetos;
+        cargarDefault();
+    }   
+    
     public ArrayList<Alfabeto> getAlfabetos() {
         return alfabetos;
     }
@@ -26,4 +31,9 @@ public class GestorAlfabeto implements iValidable {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public void cargarDefault(){
+        ArrayList<Character> simbolos = new ArrayList<>();
+        Alfabeto alfabeto = new Alfabeto(0,"Default", simbolos);
+        alfabetos.add(alfabeto);
+    }
 }

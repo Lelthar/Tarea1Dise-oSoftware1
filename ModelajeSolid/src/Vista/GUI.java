@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import Modelo.Alfabeto;
 import Modelo.Algoritmo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -33,6 +34,7 @@ public class GUI extends javax.swing.JFrame {
         escritura = new ArrayList<>();
         algoritmos = new ArrayList<>();
         cargarAlgoritmosGUI();
+        cargarAlfabetosGUI();
     }
 
     public void cargarAlgoritmosGUI(){
@@ -41,6 +43,12 @@ public class GUI extends javax.swing.JFrame {
            model.addElement(algoritmo.getNombreAlgoritmo());
         }
         this.lbAlgoritmoE.setModel(model);
+    }
+    
+    public void cargarAlfabetosGUI(){
+        for(Alfabeto alfabeto : elControlador.getGestorAlfabeto().getAlfabetos()){
+            this.cbAlfabeto.addItem(alfabeto.getNombre());
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +103,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Resultado:");
 
+        Resultados.setEditable(false);
         Resultados.setColumns(20);
         Resultados.setRows(5);
         jScrollPane1.setViewportView(Resultados);
