@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.DTOAlgoritmos;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 public class EscritorTXT  implements iEscritor {
     
     @Override
-    public boolean Escribir(String Dto){
+    public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  
         Date date = new Date();  
@@ -31,7 +32,7 @@ public class EscritorTXT  implements iEscritor {
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
             writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(formatter.format(date)+".txt")));
-            writer_txt.write(Dto);
+            writer_txt.write(DtoAlgoritmos.getResultadoAlgoritmo());
             writer_txt.close();
             return true;
         } catch (FileNotFoundException ex) {

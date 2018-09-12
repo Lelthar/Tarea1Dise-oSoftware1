@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Controlador.DTOAlgoritmos;
+
 /**
  *
  * @author josed
@@ -15,7 +17,7 @@ public interface iEscritor {
     
     
     // Recibe como parametro DTO, por ahora es un string
-    public boolean Escribir(String Dto);
+    public boolean Escribir(DTOAlgoritmos DtoAlgoritmos);
 
 
     

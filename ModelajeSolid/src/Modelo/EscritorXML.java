@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import Controlador.DTOAlgoritmos;
+
 /**
  *
  * @author josed
@@ -12,7 +14,7 @@ package Modelo;
 public class EscritorXML implements iEscritor {
     
     @Override
-    public boolean Escribir(String Dto){
+    public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         return true;
     }
     

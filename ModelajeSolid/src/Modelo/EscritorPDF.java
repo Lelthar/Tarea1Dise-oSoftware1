@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.DTOAlgoritmos;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -20,8 +21,7 @@ import java.util.Date;
  */
 public class EscritorPDF implements iEscritor {
     
-    @Override
-    public boolean Escribir(String Dto){
+    public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  
         Date date = new Date();  
@@ -32,7 +32,7 @@ public class EscritorPDF implements iEscritor {
            //Crea la variable del tipo pdf y le pasa el nombre que tendrá el pdf, el cual será la hora y fecha del sistema.
            PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(formatter.format(date)+".pdf"));
            document.open();
-           document.add(new Paragraph(Dto)); //Agrega el texto al parrafo del documento pdf
+           document.add(new Paragraph(DtoAlgoritmos.getResultadoAlgoritmo())); //Agrega el texto al parrafo del documento pdf
            document.close();
            writer_pdf.close();
            return true;
