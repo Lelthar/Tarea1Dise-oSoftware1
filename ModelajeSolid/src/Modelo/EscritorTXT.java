@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author josed
  */
-public class EscritorTXT  implements DTOEscritor {
+public class EscritorTXT  implements iEscritor {
     
     public boolean Escribir(String Dto){
         return true;

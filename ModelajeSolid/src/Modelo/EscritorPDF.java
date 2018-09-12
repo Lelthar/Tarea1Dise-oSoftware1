@@ -18,7 +18,7 @@ import java.util.Date;
  *
  * @author josed
  */
-public class EscritorPDF implements DTOEscritor {
+public class EscritorPDF implements iEscritor {
     
     public boolean Escribir(String Dto){
         //Obtiene la fecha actual en el sistema

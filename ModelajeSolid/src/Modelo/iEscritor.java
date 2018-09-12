@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author josed
  */
-public interface DTOEscritor {
+public interface iEscritor {
     
     
     
