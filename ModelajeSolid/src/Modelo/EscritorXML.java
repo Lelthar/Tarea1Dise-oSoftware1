@@ -32,12 +32,22 @@ public class EscritorXML implements iEscritor {
         String encabezado = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         String inicioXML = "<Resultado>\n";
         String finalXML = "</Resultado>";
+        String nombre = "Nombre algoritmo: ";
+        String tipoOperacion = "Operación: ";
+        String resultadoOperacion = "Resultado: ";
+        
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
             writer_xml = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(formatter.format(date)+".xml")));
             writer_xml.write(encabezado);
             writer_xml.write(inicioXML);
-            writer_xml.write(".getResultadoAlgoritmo()\n");
+            
+            for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
+               writer_xml.write(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n");
+               writer_xml.write(tipoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getTipoOperacion()+"\n");
+               writer_xml.write(resultadoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getResultadoAlgoritmo()+"\n");
+               writer_xml.write("\n");
+            }
             writer_xml.write(finalXML);
             writer_xml.close();
             return true;
