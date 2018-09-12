@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class CodigoTelefonico extends Algoritmo {
     
     private ArrayList distSimbolos ;
-    
-    public CodigoTelefonico(int id){
-        super(id);
+
+    public CodigoTelefonico(int id,String nombreAlgoritmo){
+        super(id,nombreAlgoritmo);
     }
     
     @Override

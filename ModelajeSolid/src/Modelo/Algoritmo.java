@@ -12,9 +12,19 @@ package Modelo;
 public class Algoritmo {
     
     private int id;
+    private String nombreAlgoritmo;
     
-    public Algoritmo(int id){
-        this.id = id;      
+    public Algoritmo(int id,String nombre){
+        this.id = id;
+        this.nombreAlgoritmo = nombre;
+    }
+    
+    public String getNombreAlgoritmo() {
+        return nombreAlgoritmo;
+    }
+    
+    public void setNombreAlgoritmo(String nombreAlgoritmo) {
+        this.nombreAlgoritmo = nombreAlgoritmo;
     }
     
     public String Decodificar(String mensaje){

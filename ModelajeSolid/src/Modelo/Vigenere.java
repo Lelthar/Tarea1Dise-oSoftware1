@@ -11,11 +11,14 @@ package Modelo;
  */
 public class Vigenere extends Algoritmo{
     
-    private int id ; 
+    private String nombreAlgoritmo;
     
-    
-    public Vigenere(int id){
-        super(id);
+    public Vigenere(int id,String nombreAlgoritmo){
+        super(id,nombreAlgoritmo);
+    }
+
+    public String getNombreAlgoritmo() {
+        return nombreAlgoritmo;
     }
     
     

@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Algoritmo;
 import Modelo.CodigoTelefonico;
+import Modelo.Transposicion;
 import Modelo.Vigenere;
 import java.util.ArrayList;
 
@@ -29,9 +30,9 @@ public class GestorAlgoritmos {
     }
     
     public void cargarAlgoritmos() {
-        Algoritmo vigenere = new Vigenere(0);
-        Algoritmo codigoTelefonico = new CodigoTelefonico(1);
-        Algoritmo transposicion = new Vigenere(2);
+        Algoritmo vigenere = new Vigenere(0,"Vigenere");
+        Algoritmo codigoTelefonico = new CodigoTelefonico(1,"CodigoTelefonico");
+        Algoritmo transposicion = new Transposicion(2,"Transposición");
         this.algoritmos.add(vigenere);
         this.algoritmos.add(codigoTelefonico);
         this.algoritmos.add(transposicion);

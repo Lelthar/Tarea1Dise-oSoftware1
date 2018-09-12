@@ -10,11 +10,14 @@ package Modelo;
  * @author josed
  */
 public class Transposicion extends Algoritmo {
-
-    public Transposicion(int id){
-        super(id);
-    }
     
+    
+    public Transposicion(int id,String nombreAlgoritmo){
+        super(id,nombreAlgoritmo);
+       // super();
+       
+    }
+
     @Override
     public String Codificar(String mensaje){
         
