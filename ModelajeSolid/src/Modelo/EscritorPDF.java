@@ -20,6 +20,9 @@ import java.util.Date;
  * @author josed
  */
 public class EscritorPDF implements iEscritor {
+
+    public EscritorPDF() {
+    }
     
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema

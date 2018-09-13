@@ -10,6 +10,7 @@ import Modelo.CodigoTelefonico;
 import Modelo.EscritorPDF;
 import Modelo.EscritorTXT;
 import Modelo.EscritorXML;
+import Modelo.Resultado;
 import Modelo.Transposicion;
 import Modelo.Vigenere;
 import Modelo.iEscritor;
@@ -20,48 +21,60 @@ import java.util.ArrayList;
  * @author gerald
  */
 public class GestorAlgoritmos {
-    private ArrayList<Algoritmo> algoritmos;
-    private ArrayList<iEscritor> modoEscritura;
+    private ArrayList<String> listaTipos;
     
     public GestorAlgoritmos() {
-        algoritmos = new ArrayList<>();
-        modoEscritura = new ArrayList<>();
-        cargarAlgoritmos();
-        cargarModoEscritura();
-    }
-
-    public ArrayList<Algoritmo> getAlgoritmos() {
-        return algoritmos;
-    }
-
-    public void setAlgoritmos(ArrayList<Algoritmo> algoritmos) {
-        this.algoritmos = algoritmos;
-    }
-
-    public ArrayList<iEscritor> getModoEscritura() {
-        return modoEscritura;
-    }
-
-    public void setModoEscritura(ArrayList<iEscritor> modoEscritura) {
-        this.modoEscritura = modoEscritura;
+        listaTipos = new ArrayList<>();
+        listaTipos.add("Vigenere");
+        listaTipos.add("CodigoTelefonico");
+        listaTipos.add("Transposicion");
     }
     
-    public void cargarAlgoritmos() {
-        Algoritmo vigenere = new Vigenere(0,"Vigenere");
-        Algoritmo codigoTelefonico = new CodigoTelefonico(1,"CodigoTelefonico");
-        Algoritmo transposicion = new Transposicion(2,"Transposición");
-        this.algoritmos.add(vigenere);
-        this.algoritmos.add(codigoTelefonico);
-        this.algoritmos.add(transposicion);      
+    /**
+     * Encargado de realizar una petición de codificación/decodificación
+     * @param elDTO 
+     * @param alfabeto 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.lang.InstantiationException 
+     * @throws java.lang.IllegalAccessException 
+     */
+    public void ejecutarAlgoritmo(DTOAlgoritmos elDTO,ArrayList<Character> alfabeto) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+        ArrayList<Resultado> resultados = new ArrayList<>();
+        
+        Resultado resultado;
+        Algoritmo algoritmo;
+        String paquete;
+        String instanciaAlgoritmo;
+        
+        for(int i=0;i<elDTO.getAlgoritmosSeleccionados().size();i++){
+            
+            resultado  = new Resultado();
+            
+            paquete = Algoritmo.class.getPackage().getName();
+            instanciaAlgoritmo = paquete+"."+listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i));
+            algoritmo = (Algoritmo) Class.forName(instanciaAlgoritmo).newInstance();
+           
+            resultado.setNombreAlgoritmo(listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i)));
+            
+            if(elDTO.isModoAlgoritmo()){
+                resultado.setTipoOperacion("Codificación");
+                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen(),alfabeto));
+            }else{
+                resultado.setTipoOperacion("Decodificación");
+                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen(),alfabeto));
+            }
+            resultados.add(resultado);
+            
+        }
+        elDTO.setResultadoAlgoritmo(resultados);
     }
-    
-    public void cargarModoEscritura(){
-        iEscritor escrituraPDF = new EscritorPDF();
-        iEscritor escrituraTXT = new EscritorTXT();
-        iEscritor escrituraXML = new EscritorXML();
-        this.modoEscritura.add(escrituraTXT);
-        this.modoEscritura.add(escrituraPDF);
-        this.modoEscritura.add(escrituraXML);
+
+    public ArrayList<String> getListaTipos() {
+        return listaTipos;
+    }
+
+    public void setListaTipos(ArrayList<String> listaTipos) {
+        this.listaTipos = listaTipos;
     }
     
 }

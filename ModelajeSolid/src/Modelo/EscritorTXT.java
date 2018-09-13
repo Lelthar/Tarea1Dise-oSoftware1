@@ -22,6 +22,9 @@ import java.util.logging.Logger;
  * @author josed
  */
 public class EscritorTXT  implements iEscritor {
+
+    public EscritorTXT() {
+    }
     
     @Override
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
