@@ -100,7 +100,6 @@ public class GUI extends javax.swing.JFrame {
         lbAlgoritmoE = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         lbAlgoritmoS = new javax.swing.JList<>();
-        modoDecodificar = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -200,9 +199,6 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lbAlgoritmoS);
 
-        modoDecodificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        modoDecodificar.setText("Decodificar");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -212,22 +208,18 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbAlfabeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(modoCodificar)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(modoDecodificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(modoCodificar)
+                .addGap(93, 93, 93))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,9 +237,7 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modoCodificar)
-                    .addComponent(modoDecodificar))
+                .addComponent(modoCodificar)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -388,6 +378,7 @@ public class GUI extends javax.swing.JFrame {
                     elControlador.predefinirAlfabeto(elDTO);
                     elControlador.procesarPeticion(elDTO);
                     procesarResultados(elDTO);
+                    elControlador.escribir(elDTO);
                 }
             }
         }
@@ -500,7 +491,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JList<String> lbSalidasE;
     private javax.swing.JList<String> lbSalidasS;
     private javax.swing.JRadioButton modoCodificar;
-    private javax.swing.JRadioButton modoDecodificar;
     private javax.swing.JTextField vFaseOrigen;
     // End of variables declaration//GEN-END:variables
 }

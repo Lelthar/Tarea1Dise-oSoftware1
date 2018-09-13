@@ -47,40 +47,41 @@ public class Controlador implements iValidable  {
         ArrayList<Resultado> resultados = new ArrayList<>();
         for(int i=0;i<elDTO.getAlgoritmosSeleccionados().size();i++){
             Resultado resultado = new Resultado();
+             Algoritmo algoritmo;
             switch(i){
                 case 0:
-                    Algoritmo vigenere = gestorAlgoritmos.getAlgoritmos().get(0);
+                    algoritmo = gestorAlgoritmos.getAlgoritmos().get(0);
                     resultado.setNombreAlgoritmo("Vigenere");
                     if(elDTO.isModoAlgoritmo()){
                         resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(vigenere.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
                     }else{
                         resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(vigenere.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
                     }
                     resultados.add(resultado);
                     break;
                 case 1:
-                    Algoritmo codigoTelefonico= gestorAlgoritmos.getAlgoritmos().get(1);
+                    algoritmo= gestorAlgoritmos.getAlgoritmos().get(1);
                     resultado.setNombreAlgoritmo("CodigoTelefonico");
                     if(elDTO.isModoAlgoritmo()){
                         resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(codigoTelefonico.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
                     }else{
                         resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(codigoTelefonico.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
                     }
                     resultados.add(resultado);
                     break;
                 case 2:
-                    Algoritmo transposicion = gestorAlgoritmos.getAlgoritmos().get(2);
+                    algoritmo = gestorAlgoritmos.getAlgoritmos().get(2);
                     resultado.setNombreAlgoritmo("Transposicion");
                     if(elDTO.isModoAlgoritmo()){
                         resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(transposicion.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
                     }else{
                         resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(transposicion.Codificar(elDTO.getFraseOrigen()));
+                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
                     }
                     resultados.add(resultado);
                     break;
@@ -108,8 +109,31 @@ public class Controlador implements iValidable  {
         
     }
     
+    /**
+     * metodo encargado de imprimir en el formato seleccionado.
+     * @param elDTO 
+     */
     public void escribir(DTOAlgoritmos elDTO){
-        
+        for(int i=0;i<elDTO.getSalidasSeleccionadas().size();i++){
+            iEscritor escritor;
+            switch(elDTO.getSalidasSeleccionadas().get(i)){
+                case 0:
+                    escritor = gestorAlgoritmos.getModoEscritura().get(0);
+                    escritor.Escribir(elDTO);
+                    break;
+                case 1:
+                    escritor = gestorAlgoritmos.getModoEscritura().get(1);
+                    escritor.Escribir(elDTO);
+                    break;
+                case 2:
+                    escritor = gestorAlgoritmos.getModoEscritura().get(2);
+                    escritor.Escribir(elDTO);
+                    break;
+                default:
+                    break;
+            }
+            
+        }
     }
     
     @Override
