@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author josed
@@ -18,6 +20,10 @@ public class Algoritmo {
         this.id = id;
         this.nombreAlgoritmo = nombre;
     }
+
+    public Algoritmo() {
+    }
+    
     
     public String getNombreAlgoritmo() {
         return nombreAlgoritmo;
@@ -27,12 +33,12 @@ public class Algoritmo {
         this.nombreAlgoritmo = nombreAlgoritmo;
     }
     
-    public String Decodificar(String mensaje){
+    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
      
         return "A";
     }
     
-    public String Codificar(String mensaje){
+    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
         
         return "B";
     }

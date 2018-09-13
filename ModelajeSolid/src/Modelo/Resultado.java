@@ -40,6 +40,11 @@ public class Resultado {
     public void setTipoOperacion(String tipoOperacion) {
         this.tipoOperacion = tipoOperacion;
     }
+
+    @Override
+    public String toString() {
+        return "Resultado{" + "nombreAlgoritmo=" + nombreAlgoritmo + ", resultadoAlgoritmo=" + resultadoAlgoritmo + ", tipoOperacion=" + tipoOperacion + '}';
+    }
     
     
 }

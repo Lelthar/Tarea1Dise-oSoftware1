@@ -6,10 +6,18 @@
 package Vista;
 
 import Controlador.Controlador;
+import Controlador.DTOAlgoritmos;
 import Modelo.Alfabeto;
 import Modelo.Algoritmo;
+import Modelo.Resultado;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,7 +44,9 @@ public class GUI extends javax.swing.JFrame {
         cargarAlgoritmosGUI();
         cargarAlfabetosGUI();
     }
-
+    /**
+     * metodo que carga los algoritmos disponibles al GUI
+     */
     public void cargarAlgoritmosGUI(){
         DefaultListModel<String> model = new DefaultListModel<>(); 
         for (Algoritmo algoritmo : elControlador.getAlgoritmos().getAlgoritmos()) {
@@ -45,11 +55,33 @@ public class GUI extends javax.swing.JFrame {
         this.lbAlgoritmoE.setModel(model);
     }
     
+    /**
+     * metodo que carga los alfabetos al GUI
+     */
     public void cargarAlfabetosGUI(){
         for(Alfabeto alfabeto : elControlador.getGestorAlfabeto().getAlfabetos()){
             this.cbAlfabeto.addItem(alfabeto.getNombre());
         }
     }
+    /**
+     * Metodo que trabaja la forma de mostrar el resultado.
+     * @param elDTO
+     */
+   public void procesarResultados(DTOAlgoritmos elDTO){
+       this.Resultados.setText("");
+       String texto="";
+       String fechaHora = "Fecha y hora: ";
+       String fraseOriginal = "Frase original: ";
+       
+       texto += (fechaHora+elDTO.getFechaHora()+"\n");
+       texto += (fraseOriginal+elDTO.getFraseOrigen()+"\n\n");
+       texto += "Resultados: \n";
+       for(Resultado resultado : elDTO.getResultadoAlgoritmo()){
+           texto += resultado.getNombreAlgoritmo()+"("+resultado.getTipoOperacion()+"):\n";
+           texto += resultado.getResultadoAlgoritmo()+" \n\n";
+       }
+       this.Resultados.setText(texto);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +112,6 @@ public class GUI extends javax.swing.JFrame {
         lbAlgoritmoE = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         lbAlgoritmoS = new javax.swing.JList<>();
-        modoDecodificar = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -180,9 +211,6 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lbAlgoritmoS);
 
-        modoDecodificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        modoDecodificar.setText("Decodificar");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -192,22 +220,18 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbAlfabeto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(modoCodificar)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(modoDecodificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(modoCodificar)
+                .addGap(93, 93, 93))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,9 +249,7 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modoCodificar)
-                    .addComponent(modoDecodificar))
+                .addComponent(modoCodificar)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -357,28 +379,65 @@ public class GUI extends javax.swing.JFrame {
         String frase = vFaseOrigen.getText();
         int alfabeto = cbAlfabeto.getSelectedIndex();
         boolean modo = modoCodificar.isSelected();
-        if(!escritura.isEmpty() && !algoritmos.isEmpty()){
-            if(!frase.isEmpty()){
-                System.out.println("Procesando..........");
-                Resultados.setText("Procesando...........");
+        if(!escritura.isEmpty()){
+            if (!algoritmos.isEmpty()) {
+                if(!frase.isEmpty()){
+                    DTOAlgoritmos elDTO = new DTOAlgoritmos();
+                    
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+                    Date date = new Date();
+                    
+                    elDTO.setFechaHora(formatter.format(date));
+                    elDTO.setFraseOrigen(frase);
+                    elDTO.setModoAlgoritmo(modo);
+                    elDTO.setAlgoritmosSeleccionados(algoritmos);
+
+                    elDTO.setSalidasSeleccionadas(escritura);
+                    if(elControlador.Validar(elDTO)){
+                        elControlador.predefinirAlfabeto(elDTO);
+                        try {
+                            elControlador.procesarPeticion(elDTO);
+                            procesarResultados(elDTO);
+                            elControlador.escribir(elDTO);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InstantiationException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IllegalAccessException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Necesita escribir un frase para realizar la operación.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
             }
+            
+        } else {
+            //JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
         }
         
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
 
     private void lbSalidasEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSalidasEMouseClicked
         // TODO add your handling code here:
+        
         int pos = this.lbSalidasE.getAnchorSelectionIndex();
         String tipo = this.lbSalidasE.getSelectedValue();
         if(!escritura.contains(pos)){
             escritura.add(pos);
             modelEscritura.addElement(tipo);
             this.lbSalidasS.setModel(modelEscritura);           
-        }    
+        } 
+       
+           
     }//GEN-LAST:event_lbSalidasEMouseClicked
 
     private void lbAlgoritmoEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAlgoritmoEMouseClicked
         // TODO add your handling code here:
+        
         int pos = this.lbAlgoritmoE.getAnchorSelectionIndex();
         String tipo = this.lbAlgoritmoE.getSelectedValue();
         if(!algoritmos.contains(pos)){
@@ -386,25 +445,33 @@ public class GUI extends javax.swing.JFrame {
             modelAlgoritmos.addElement(tipo);
             this.lbAlgoritmoS.setModel(modelAlgoritmos);
         }
+       
+        
     }//GEN-LAST:event_lbAlgoritmoEMouseClicked
 
     private void lbSalidasSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSalidasSMouseClicked
         // TODO add your handling code here:
-        int pos = this.lbSalidasS.getAnchorSelectionIndex();
-        String tipo = this.lbSalidasS.getSelectedValue();
-        modelEscritura.removeElement(tipo);
-        escritura.remove(pos);
-        this.lbSalidasS.setModel(modelEscritura);
+        if ( !this.escritura.isEmpty() ) {
+             int pos = this.lbSalidasS.getAnchorSelectionIndex();
+            String tipo = this.lbSalidasS.getSelectedValue();
+            modelEscritura.removeElement(tipo);
+            escritura.remove(pos);
+            this.lbSalidasS.setModel(modelEscritura);
+        }
+            //JOptionPane.showMessageDialog(this, ""); 
         
     }//GEN-LAST:event_lbSalidasSMouseClicked
 
     private void lbAlgoritmoSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAlgoritmoSMouseClicked
         // TODO add your handling code here:
-        int pos = this.lbAlgoritmoS.getAnchorSelectionIndex();
-        String tipo = this.lbAlgoritmoS.getSelectedValue();
-        modelAlgoritmos.removeElement(tipo);
-        algoritmos.remove(pos);
-        this.lbAlgoritmoS.setModel(modelAlgoritmos);
+        if (!algoritmos.isEmpty()) {
+             int pos = this.lbAlgoritmoS.getAnchorSelectionIndex();
+            String tipo = this.lbAlgoritmoS.getSelectedValue();
+            modelAlgoritmos.removeElement(tipo);
+            algoritmos.remove(pos);
+            this.lbAlgoritmoS.setModel(modelAlgoritmos);
+        }
+       
     }//GEN-LAST:event_lbAlgoritmoSMouseClicked
 
     /**
@@ -472,7 +539,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JList<String> lbSalidasE;
     private javax.swing.JList<String> lbSalidasS;
     private javax.swing.JRadioButton modoCodificar;
-    private javax.swing.JRadioButton modoDecodificar;
     private javax.swing.JTextField vFaseOrigen;
     // End of variables declaration//GEN-END:variables
 }

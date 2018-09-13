@@ -18,16 +18,19 @@ public class CodigoTelefonico extends Algoritmo {
     public CodigoTelefonico(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
     }
+
+    public CodigoTelefonico() {
+    }
     
     @Override
-    public String Codificar(String mensaje){
+    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
         
         
-        return "Debe ser programado por Gerald Codificar";
+        return "Debe ser programado por Gerald Codificar codigoTelefonico";
     }
     @Override
-    public String Decodificar(String mensaje){
-        return "Debe ser programado por Gerald Decodificar";
+    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+        return "Debe ser programado por Gerald Decodificar codigoTelefonico";
     }
     
    
