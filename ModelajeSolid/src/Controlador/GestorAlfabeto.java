@@ -7,6 +7,7 @@ package Controlador;
 
 import Modelo.Alfabeto;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -32,7 +33,17 @@ public class GestorAlfabeto implements iValidable {
     }
     
     public void cargarDefault(){
-        ArrayList<Character> simbolos = new ArrayList<>();
+        //ArrayList<Character> simbolos = new ArrayList<>();
+        String defaultSimbolos = "abcdefghijklmnopqrstuvwxyz)";
+        ArrayList<Character> simbolos
+        = new ArrayList<>(
+                 defaultSimbolos.chars()
+                .mapToObj(e -> (char) e)
+                .collect(
+                        Collectors.toList()
+                )
+        );
+        
         Alfabeto alfabeto = new Alfabeto(0,"Default", simbolos);
         alfabetos.add(alfabeto);
     }

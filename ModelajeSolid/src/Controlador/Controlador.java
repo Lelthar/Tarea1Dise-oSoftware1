@@ -62,20 +62,17 @@ public class Controlador implements iValidable  {
             resultado  = new Resultado();
             
             paquete = Algoritmo.class.getPackage().getName();
-            
             laInstancia = paquete+"."+listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i));
-            System.out.println(laInstancia);
             algoritmo = (Algoritmo) Class.forName(laInstancia).newInstance();
-            
-            //algoritmo = gestorAlgoritmos.getAlgoritmos().get(0);
+           
             resultado.setNombreAlgoritmo(listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i)));
             
             if(elDTO.isModoAlgoritmo()){
                 resultado.setTipoOperacion("Codificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
+                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen(),getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos()));
             }else{
                 resultado.setTipoOperacion("Decodificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
+                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen(),getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos()));
             }
             resultados.add(resultado);
             

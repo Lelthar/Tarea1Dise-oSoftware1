@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author josed
@@ -21,16 +23,34 @@ public class Vigenere extends Algoritmo{
     
     
     @Override
-    public String Codificar(String mensaje){
-        
-        return "Debe ser programado por José Codificar Vigenere";
+    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+        String resultado = "";
+        for (int i = 0; i < mensaje.length(); i++) {
+            if (i%2 == 0 && mensaje.charAt(i) != ' ') {
+                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))+2)%alfabeto.size());
+            }else if (mensaje.charAt(i) != ' '){
+                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))+3)%alfabeto.size());
+            } else {
+                resultado += ' ';
+            }
+        }
+        return resultado;
     }
     
     
     @Override
-    public String Decodificar(String mensaje){
-        
-        return "Debe ser programado por José Decodificar Vigenere";
+    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+        String resultado = "";
+        for (int i = 0; i < mensaje.length(); i++) {
+            if (i%2 == 0 && mensaje.charAt(i) != ' ') {
+                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))-2)%alfabeto.size());
+            }else if (mensaje.charAt(i) != ' '){
+                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))-3)%alfabeto.size());
+            } else {
+                resultado += ' ';
+            }
+        }
+        return resultado;
     }
     
 }

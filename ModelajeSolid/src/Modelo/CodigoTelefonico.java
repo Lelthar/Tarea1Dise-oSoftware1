@@ -23,13 +23,13 @@ public class CodigoTelefonico extends Algoritmo {
     }
     
     @Override
-    public String Codificar(String mensaje){
+    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
         
         
         return "Debe ser programado por Gerald Codificar codigoTelefonico";
     }
     @Override
-    public String Decodificar(String mensaje){
+    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
         return "Debe ser programado por Gerald Decodificar codigoTelefonico";
     }
     
