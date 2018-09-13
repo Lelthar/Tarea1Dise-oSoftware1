@@ -8,11 +8,9 @@ package Vista;
 import Controlador.Controlador;
 import Controlador.DTOAlgoritmos;
 import Modelo.Alfabeto;
-import Modelo.Algoritmo;
 import Modelo.Resultado;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,8 +47,8 @@ public class GUI extends javax.swing.JFrame {
      */
     public void cargarAlgoritmosGUI(){
         DefaultListModel<String> model = new DefaultListModel<>(); 
-        for (Algoritmo algoritmo : elControlador.getAlgoritmos().getAlgoritmos()) {
-           model.addElement(algoritmo.getNombreAlgoritmo());
+        for (String algoritmo : elControlador.getAlgoritmos().getListaTipos()) {
+           model.addElement(algoritmo);
         }
         this.lbAlgoritmoE.setModel(model);
     }

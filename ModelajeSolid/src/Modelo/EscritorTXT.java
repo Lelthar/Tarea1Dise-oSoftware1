@@ -12,16 +12,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author josed
+ * @author gerald
  */
 public class EscritorTXT  implements iEscritor {
+
+    public EscritorTXT() {
+    }
     
     @Override
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){

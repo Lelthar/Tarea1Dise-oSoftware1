@@ -6,9 +6,6 @@
 package Controlador;
 
 import Modelo.Alfabeto;
-import Modelo.Algoritmo;
-import Modelo.Resultado;
-import Modelo.iEscritor;
 import java.util.ArrayList;
 
 /**
@@ -22,11 +19,12 @@ public class Controlador implements iValidable  {
     //Por asociaciones
     private GestorAlfabeto gestorAlfabeto;
     private GestorAlgoritmos gestorAlgoritmos;
-    private iEscritor elEscritor;
+    private GestorEscritor gestorEscritor;
 
     public Controlador() {
         gestorAlgoritmos = new GestorAlgoritmos();
         gestorAlfabeto = new GestorAlfabeto(new ArrayList<>());
+        gestorEscritor = new GestorEscritor();
     }
     
     /**
@@ -44,40 +42,8 @@ public class Controlador implements iValidable  {
      * @param elDTO 
      */
     public void procesarPeticion(DTOAlgoritmos elDTO) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
-        ArrayList<Resultado> resultados = new ArrayList<>();
-        
-        ArrayList<String> listaTipos = new ArrayList<>();
-        
-        listaTipos.add("Vigenere");
-        listaTipos.add("CodigoTelefonico");
-        listaTipos.add("Transposicion");
-        
-        Resultado resultado;
-        Algoritmo algoritmo;
-        String paquete;
-        String laInstancia;
-        
-        for(int i=0;i<elDTO.getAlgoritmosSeleccionados().size();i++){
-            
-            resultado  = new Resultado();
-            
-            paquete = Algoritmo.class.getPackage().getName();
-            laInstancia = paquete+"."+listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i));
-            algoritmo = (Algoritmo) Class.forName(laInstancia).newInstance();
-           
-            resultado.setNombreAlgoritmo(listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i)));
-            
-            if(elDTO.isModoAlgoritmo()){
-                resultado.setTipoOperacion("Codificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen(),getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos()));
-            }else{
-                resultado.setTipoOperacion("Decodificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen(),getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos()));
-            }
-            resultados.add(resultado);
-            
-        }
-        elDTO.setResultadoAlgoritmo(resultados);
+        this.gestorAlgoritmos.ejecutarAlgoritmo(elDTO, getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos());
+          
     }
     
     /**
@@ -86,7 +52,7 @@ public class Controlador implements iValidable  {
      */
     public void predefinirAlfabeto(DTOAlgoritmos elDTO){
         alfabetoActual = gestorAlfabeto.getAlfabetos().get(elDTO.getNumeroAlfabeto());
-        //System.out.println("Alfabeto Controlador: "+alfabetoActual.getNombre());
+       
     }
     
     /**
@@ -101,27 +67,8 @@ public class Controlador implements iValidable  {
      * metodo encargado de imprimir en el formato seleccionado.
      * @param elDTO 
      */
-    public void escribir(DTOAlgoritmos elDTO){
-        for(int i=0;i<elDTO.getSalidasSeleccionadas().size();i++){
-            iEscritor escritor;
-            switch(elDTO.getSalidasSeleccionadas().get(i)){
-                case 0:
-                    escritor = gestorAlgoritmos.getModoEscritura().get(0);
-                    escritor.Escribir(elDTO);
-                    break;
-                case 1:
-                    escritor = gestorAlgoritmos.getModoEscritura().get(1);
-                    escritor.Escribir(elDTO);
-                    break;
-                case 2:
-                    escritor = gestorAlgoritmos.getModoEscritura().get(2);
-                    escritor.Escribir(elDTO);
-                    break;
-                default:
-                    break;
-            }
-            
-        }
+    public void escribir(DTOAlgoritmos dtoAlgoritmos) throws InstantiationException, ClassNotFoundException, IllegalAccessException{
+        this.gestorEscritor.escribirSalida(dtoAlgoritmos);
     }
     
     @Override

@@ -12,14 +12,15 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
- * @author josed
+ * @author gerald
  */
 public class EscritorPDF implements iEscritor {
+
+    public EscritorPDF() {
+    }
     
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema

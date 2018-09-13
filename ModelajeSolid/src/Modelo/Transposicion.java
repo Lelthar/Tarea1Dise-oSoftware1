@@ -6,25 +6,30 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
  *
- * @author josed
+ * @author gerald
  */
 public class Transposicion extends Algoritmo {
     
     
     public Transposicion(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
-       // super();
        
     }
 
     public Transposicion() {
     }
     
+    /**
+     * Este metodo se encarga de separar las palabras por los espacios
+     * Recibe el string que va a separar y devuelve un arraylist con las palabras separadas.
+     * 
+     * @param mensaje
+     * @return 
+     */
     public ArrayList<String> dividirMensaje(String mensaje ){
         ArrayList<String> listaDividida = new ArrayList<>();
         String valorActual = "";
@@ -50,7 +55,7 @@ public class Transposicion extends Algoritmo {
     }
     
     
-
+    
     @Override
     public String Codificar(String mensaje, ArrayList<Character> alfabeto){
         String conversion = "";
