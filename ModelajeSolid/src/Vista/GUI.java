@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -370,30 +371,39 @@ public class GUI extends javax.swing.JFrame {
         String frase = vFaseOrigen.getText();
         int alfabeto = cbAlfabeto.getSelectedIndex();
         boolean modo = modoCodificar.isSelected();
-        if(!escritura.isEmpty() && !algoritmos.isEmpty()){
-            if(!frase.isEmpty()){
-                DTOAlgoritmos elDTO = new DTOAlgoritmos();
-                elDTO.setFraseOrigen(frase);
-                elDTO.setModoAlgoritmo(modo);
-                elDTO.setAlgoritmosSeleccionados(algoritmos);
-                
-                elDTO.setSalidasSeleccionadas(escritura);
-                if(elControlador.Validar(elDTO)){
-                    elControlador.predefinirAlfabeto(elDTO);
-                    try {
-                        elControlador.procesarPeticion(elDTO);
-                        procesarResultados(elDTO);
-                        elControlador.escribir(elDTO);
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        if(!escritura.isEmpty()){
+            if (!algoritmos.isEmpty()) {
+                if(!frase.isEmpty()){
+                    DTOAlgoritmos elDTO = new DTOAlgoritmos();
+                    elDTO.setFraseOrigen(frase);
+                    elDTO.setModoAlgoritmo(modo);
+                    elDTO.setAlgoritmosSeleccionados(algoritmos);
+
+                    elDTO.setSalidasSeleccionadas(escritura);
+                    if(elControlador.Validar(elDTO)){
+                        elControlador.predefinirAlfabeto(elDTO);
+                        try {
+                            elControlador.procesarPeticion(elDTO);
+                            procesarResultados(elDTO);
+                            elControlador.escribir(elDTO);
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InstantiationException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IllegalAccessException ex) {
+                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
-                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "Necesita escribir un frase para realizar la operación.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
             }
+            
+        } else {
+            //JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
         }
         
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
@@ -434,11 +444,8 @@ public class GUI extends javax.swing.JFrame {
             modelEscritura.removeElement(tipo);
             escritura.remove(pos);
             this.lbSalidasS.setModel(modelEscritura);
-        } else {
-            System.out.println("Mostrar Error");
         }
-        
-       
+            //JOptionPane.showMessageDialog(this, ""); 
         
     }//GEN-LAST:event_lbSalidasSMouseClicked
 
@@ -450,8 +457,6 @@ public class GUI extends javax.swing.JFrame {
             modelAlgoritmos.removeElement(tipo);
             algoritmos.remove(pos);
             this.lbAlgoritmoS.setModel(modelAlgoritmos);
-        } else {
-            System.out.println("Mostrar error");
         }
        
     }//GEN-LAST:event_lbAlgoritmoSMouseClicked
