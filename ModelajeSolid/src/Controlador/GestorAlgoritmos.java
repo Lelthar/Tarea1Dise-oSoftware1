@@ -6,14 +6,7 @@
 package Controlador;
 
 import Modelo.Algoritmo;
-import Modelo.CodigoTelefonico;
-import Modelo.EscritorPDF;
-import Modelo.EscritorTXT;
-import Modelo.EscritorXML;
 import Modelo.Resultado;
-import Modelo.Transposicion;
-import Modelo.Vigenere;
-import Modelo.iEscritor;
 import java.util.ArrayList;
 
 /**
@@ -51,10 +44,10 @@ public class GestorAlgoritmos {
             resultado  = new Resultado();
             
             paquete = Algoritmo.class.getPackage().getName();
-            instanciaAlgoritmo = paquete+"."+listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i));
+            instanciaAlgoritmo = paquete+"."+getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i));
             algoritmo = (Algoritmo) Class.forName(instanciaAlgoritmo).newInstance();
            
-            resultado.setNombreAlgoritmo(listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i)));
+            resultado.setNombreAlgoritmo(getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i)));
             
             if(elDTO.isModoAlgoritmo()){
                 resultado.setTipoOperacion("Codificación");

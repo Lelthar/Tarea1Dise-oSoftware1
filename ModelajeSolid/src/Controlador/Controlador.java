@@ -6,9 +6,6 @@
 package Controlador;
 
 import Modelo.Alfabeto;
-import Modelo.Algoritmo;
-import Modelo.Resultado;
-import Modelo.iEscritor;
 import java.util.ArrayList;
 
 /**
@@ -72,7 +69,6 @@ public class Controlador implements iValidable  {
      */
     public void escribir(DTOAlgoritmos dtoAlgoritmos) throws InstantiationException, ClassNotFoundException, IllegalAccessException{
         this.gestorEscritor.escribirSalida(dtoAlgoritmos);
-        System.out.println("No sirvo");
     }
     
     @Override

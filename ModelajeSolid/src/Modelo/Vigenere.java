@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author josed
+ * @author gerald
  */
 public class Vigenere extends Algoritmo{
     

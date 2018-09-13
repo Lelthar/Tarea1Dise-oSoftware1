@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author gerald
  */
 public class GestorEscritor {
-    ArrayList<String> listaTipos;
+    private ArrayList<String> listaTipos;
     
     public GestorEscritor() {
         listaTipos = new ArrayList<>();
@@ -21,6 +21,16 @@ public class GestorEscritor {
         listaTipos.add("EscritorPDF");
         listaTipos.add("EscritorXML");
     }
+
+    public ArrayList<String> getListaTipos() {
+        return listaTipos;
+    }
+
+    public void setListaTipos(ArrayList<String> listaTipos) {
+        this.listaTipos = listaTipos;
+    }
+    
+    
     
     public void escribirSalida(DTOAlgoritmos dtoAlgoritmos) throws InstantiationException, ClassNotFoundException, IllegalAccessException{
         String paquete;
@@ -29,7 +39,7 @@ public class GestorEscritor {
         
         for(int i=0; i < dtoAlgoritmos.getSalidasSeleccionadas().size(); i++){
             paquete = iEscritor.class.getPackage().getName();
-            instanciaEscritor = paquete+"."+this.listaTipos.get(dtoAlgoritmos.getSalidasSeleccionadas().get(i));
+            instanciaEscritor = paquete+"."+getListaTipos().get(dtoAlgoritmos.getSalidasSeleccionadas().get(i));
             escritor = (iEscritor) Class.forName(instanciaEscritor).newInstance();
             System.out.println(instanciaEscritor);
             escritor.Escribir(dtoAlgoritmos);
