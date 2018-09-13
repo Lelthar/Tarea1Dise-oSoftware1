@@ -18,6 +18,11 @@ public class Transposicion extends Algoritmo {
        
     }
 
+    public Transposicion() {
+    }
+    
+    
+
     @Override
     public String Codificar(String mensaje){
         

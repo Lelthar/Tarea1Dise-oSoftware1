@@ -14,6 +14,11 @@ public class Vigenere extends Algoritmo{
     public Vigenere(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
     }
+
+    public Vigenere() {
+    }
+    
+    
     
     @Override
     public String Codificar(String mensaje){

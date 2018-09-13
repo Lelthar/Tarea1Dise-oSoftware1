@@ -18,6 +18,9 @@ public class CodigoTelefonico extends Algoritmo {
     public CodigoTelefonico(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
     }
+
+    public CodigoTelefonico() {
+    }
     
     @Override
     public String Codificar(String mensaje){

@@ -11,6 +11,9 @@ import Modelo.Alfabeto;
 import Modelo.Algoritmo;
 import Modelo.Resultado;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -373,12 +376,22 @@ public class GUI extends javax.swing.JFrame {
                 elDTO.setFraseOrigen(frase);
                 elDTO.setModoAlgoritmo(modo);
                 elDTO.setAlgoritmosSeleccionados(algoritmos);
+                
                 elDTO.setSalidasSeleccionadas(escritura);
                 if(elControlador.Validar(elDTO)){
                     elControlador.predefinirAlfabeto(elDTO);
-                    elControlador.procesarPeticion(elDTO);
-                    procesarResultados(elDTO);
-                    elControlador.escribir(elDTO);
+                    try {
+                        elControlador.procesarPeticion(elDTO);
+                        procesarResultados(elDTO);
+                        elControlador.escribir(elDTO);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                 }
             }
         }
@@ -387,17 +400,21 @@ public class GUI extends javax.swing.JFrame {
 
     private void lbSalidasEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSalidasEMouseClicked
         // TODO add your handling code here:
+        
         int pos = this.lbSalidasE.getAnchorSelectionIndex();
         String tipo = this.lbSalidasE.getSelectedValue();
         if(!escritura.contains(pos)){
             escritura.add(pos);
             modelEscritura.addElement(tipo);
             this.lbSalidasS.setModel(modelEscritura);           
-        }    
+        } 
+       
+           
     }//GEN-LAST:event_lbSalidasEMouseClicked
 
     private void lbAlgoritmoEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAlgoritmoEMouseClicked
         // TODO add your handling code here:
+        
         int pos = this.lbAlgoritmoE.getAnchorSelectionIndex();
         String tipo = this.lbAlgoritmoE.getSelectedValue();
         if(!algoritmos.contains(pos)){
@@ -405,25 +422,38 @@ public class GUI extends javax.swing.JFrame {
             modelAlgoritmos.addElement(tipo);
             this.lbAlgoritmoS.setModel(modelAlgoritmos);
         }
+       
+        
     }//GEN-LAST:event_lbAlgoritmoEMouseClicked
 
     private void lbSalidasSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSalidasSMouseClicked
         // TODO add your handling code here:
-        int pos = this.lbSalidasS.getAnchorSelectionIndex();
-        String tipo = this.lbSalidasS.getSelectedValue();
-        modelEscritura.removeElement(tipo);
-        escritura.remove(pos);
-        this.lbSalidasS.setModel(modelEscritura);
+        if ( !this.escritura.isEmpty() ) {
+             int pos = this.lbSalidasS.getAnchorSelectionIndex();
+            String tipo = this.lbSalidasS.getSelectedValue();
+            modelEscritura.removeElement(tipo);
+            escritura.remove(pos);
+            this.lbSalidasS.setModel(modelEscritura);
+        } else {
+            System.out.println("Mostrar Error");
+        }
+        
+       
         
     }//GEN-LAST:event_lbSalidasSMouseClicked
 
     private void lbAlgoritmoSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAlgoritmoSMouseClicked
         // TODO add your handling code here:
-        int pos = this.lbAlgoritmoS.getAnchorSelectionIndex();
-        String tipo = this.lbAlgoritmoS.getSelectedValue();
-        modelAlgoritmos.removeElement(tipo);
-        algoritmos.remove(pos);
-        this.lbAlgoritmoS.setModel(modelAlgoritmos);
+        if (!algoritmos.isEmpty()) {
+             int pos = this.lbAlgoritmoS.getAnchorSelectionIndex();
+            String tipo = this.lbAlgoritmoS.getSelectedValue();
+            modelAlgoritmos.removeElement(tipo);
+            algoritmos.remove(pos);
+            this.lbAlgoritmoS.setModel(modelAlgoritmos);
+        } else {
+            System.out.println("Mostrar error");
+        }
+       
     }//GEN-LAST:event_lbAlgoritmoSMouseClicked
 
     /**

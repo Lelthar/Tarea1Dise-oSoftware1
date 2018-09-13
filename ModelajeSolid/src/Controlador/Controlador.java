@@ -43,51 +43,42 @@ public class Controlador implements iValidable  {
      * Encargado de realizar una petición de codificación/decodificación
      * @param elDTO 
      */
-    public void procesarPeticion(DTOAlgoritmos elDTO){
+    public void procesarPeticion(DTOAlgoritmos elDTO) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
         ArrayList<Resultado> resultados = new ArrayList<>();
+        
+        ArrayList<String> listaTipos = new ArrayList<>();
+        
+        listaTipos.add("Vigenere");
+        listaTipos.add("CodigoTelefonico");
+        listaTipos.add("Transposicion");
+        
+        Resultado resultado;
+        Algoritmo algoritmo;
+        String paquete;
+        String laInstancia;
+        
         for(int i=0;i<elDTO.getAlgoritmosSeleccionados().size();i++){
-            Resultado resultado = new Resultado();
-             Algoritmo algoritmo;
-            switch(i){
-                case 0:
-                    algoritmo = gestorAlgoritmos.getAlgoritmos().get(0);
-                    resultado.setNombreAlgoritmo("Vigenere");
-                    if(elDTO.isModoAlgoritmo()){
-                        resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
-                    }else{
-                        resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
-                    }
-                    resultados.add(resultado);
-                    break;
-                case 1:
-                    algoritmo= gestorAlgoritmos.getAlgoritmos().get(1);
-                    resultado.setNombreAlgoritmo("CodigoTelefonico");
-                    if(elDTO.isModoAlgoritmo()){
-                        resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
-                    }else{
-                        resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
-                    }
-                    resultados.add(resultado);
-                    break;
-                case 2:
-                    algoritmo = gestorAlgoritmos.getAlgoritmos().get(2);
-                    resultado.setNombreAlgoritmo("Transposicion");
-                    if(elDTO.isModoAlgoritmo()){
-                        resultado.setTipoOperacion("Codificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
-                    }else{
-                        resultado.setTipoOperacion("Decodificación");
-                        resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
-                    }
-                    resultados.add(resultado);
-                    break;
-                default:
-                    break;
+            
+            resultado  = new Resultado();
+            
+            paquete = Algoritmo.class.getPackage().getName();
+            
+            laInstancia = paquete+"."+listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i));
+            System.out.println(laInstancia);
+            algoritmo = (Algoritmo) Class.forName(laInstancia).newInstance();
+            
+            //algoritmo = gestorAlgoritmos.getAlgoritmos().get(0);
+            resultado.setNombreAlgoritmo(listaTipos.get(elDTO.getAlgoritmosSeleccionados().get(i)));
+            
+            if(elDTO.isModoAlgoritmo()){
+                resultado.setTipoOperacion("Codificación");
+                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen()));
+            }else{
+                resultado.setTipoOperacion("Decodificación");
+                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen()));
             }
+            resultados.add(resultado);
+            
         }
         elDTO.setResultadoAlgoritmo(resultados);
     }

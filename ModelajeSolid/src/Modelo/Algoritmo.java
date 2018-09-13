@@ -18,6 +18,10 @@ public class Algoritmo {
         this.id = id;
         this.nombreAlgoritmo = nombre;
     }
+
+    public Algoritmo() {
+    }
+    
     
     public String getNombreAlgoritmo() {
         return nombreAlgoritmo;
