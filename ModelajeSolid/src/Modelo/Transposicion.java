@@ -90,10 +90,5 @@ public class Transposicion extends Algoritmo {
         
         return resultado.toString().substring(0,resultado.length()-1);
     }
-    
-    
-    
-    
-    
-    
+     
 }
