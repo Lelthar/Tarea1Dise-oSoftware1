@@ -6,8 +6,10 @@
 package Vista;
 
 import Controlador.Controlador;
+import Controlador.DTOAlgoritmos;
 import Modelo.Alfabeto;
 import Modelo.Algoritmo;
+import Modelo.Resultado;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -36,7 +38,9 @@ public class GUI extends javax.swing.JFrame {
         cargarAlgoritmosGUI();
         cargarAlfabetosGUI();
     }
-
+    /**
+     * metodo que carga los algoritmos disponibles al GUI
+     */
     public void cargarAlgoritmosGUI(){
         DefaultListModel<String> model = new DefaultListModel<>(); 
         for (Algoritmo algoritmo : elControlador.getAlgoritmos().getAlgoritmos()) {
@@ -45,11 +49,27 @@ public class GUI extends javax.swing.JFrame {
         this.lbAlgoritmoE.setModel(model);
     }
     
+    /**
+     * metodo que carga los alfabetos al GUI
+     */
     public void cargarAlfabetosGUI(){
         for(Alfabeto alfabeto : elControlador.getGestorAlfabeto().getAlfabetos()){
             this.cbAlfabeto.addItem(alfabeto.getNombre());
         }
     }
+    /**
+     * Metodo que trabaja la forma de mostrar el resultado.
+     * @param elDTO
+     */
+   public void procesarResultados(DTOAlgoritmos elDTO){
+       this.Resultados.setText("");
+       String texto="";
+       for(Resultado resultado : elDTO.getResultadoAlgoritmo()){
+           texto += resultado.getNombreAlgoritmo()+"("+resultado.getTipoOperacion()+"):\n";
+           texto += resultado.getResultadoAlgoritmo()+" \n\n";
+       }
+       this.Resultados.setText(texto);
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -359,8 +379,16 @@ public class GUI extends javax.swing.JFrame {
         boolean modo = modoCodificar.isSelected();
         if(!escritura.isEmpty() && !algoritmos.isEmpty()){
             if(!frase.isEmpty()){
-                System.out.println("Procesando..........");
-                Resultados.setText("Procesando...........");
+                DTOAlgoritmos elDTO = new DTOAlgoritmos();
+                elDTO.setFraseOrigen(frase);
+                elDTO.setModoAlgoritmo(modo);
+                elDTO.setAlgoritmosSeleccionados(algoritmos);
+                elDTO.setSalidasSeleccionadas(escritura);
+                if(elControlador.Validar(elDTO)){
+                    elControlador.predefinirAlfabeto(elDTO);
+                    elControlador.procesarPeticion(elDTO);
+                    procesarResultados(elDTO);
+                }
             }
         }
         

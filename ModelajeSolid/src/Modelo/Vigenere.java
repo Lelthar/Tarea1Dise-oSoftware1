@@ -18,14 +18,14 @@ public class Vigenere extends Algoritmo{
     @Override
     public String Codificar(String mensaje){
         
-        return "Debe ser programado por José Codificar";
+        return "Debe ser programado por José Codificar Vigenere";
     }
     
     
     @Override
     public String Decodificar(String mensaje){
         
-        return "Debe ser programado por José Decodificar";
+        return "Debe ser programado por José Decodificar Vigenere";
     }
     
 }

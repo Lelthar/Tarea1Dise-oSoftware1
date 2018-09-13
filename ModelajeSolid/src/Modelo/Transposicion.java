@@ -21,13 +21,13 @@ public class Transposicion extends Algoritmo {
     @Override
     public String Codificar(String mensaje){
         
-        return "Debe ser programado por Marlon Codificar";
+        return "Debe ser programado por Marlon Codificar Transposicion";
     }
     
     @Override
     public String Decodificar(String mensaje){
         
-        return "Debe ser programado por Marlon Decodificar";
+        return "Debe ser programado por Marlon Decodificar Transposicion";
     }
     
     
