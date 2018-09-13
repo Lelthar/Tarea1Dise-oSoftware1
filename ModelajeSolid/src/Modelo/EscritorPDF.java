@@ -23,17 +23,16 @@ public class EscritorPDF implements iEscritor {
     
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  
-        Date date = new Date();
         String nombre = "Nombre algoritmo: ";
         String tipoOperacion = "Operación: ";
         String resultadoOperacion = "Resultado: ";
+        String ubicacion = "resultados/";
         
         Document document = new Document();
         try
         {
            //Crea la variable del tipo pdf y le pasa el nombre que tendrá el pdf, el cual será la hora y fecha del sistema.
-           PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(formatter.format(date)+".pdf"));
+           PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".pdf"));
            document.open();
            for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
                document.add(new Paragraph(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n"));

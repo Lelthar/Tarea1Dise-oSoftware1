@@ -10,8 +10,10 @@ import Controlador.DTOAlgoritmos;
 import Modelo.Alfabeto;
 import Modelo.Algoritmo;
 import Modelo.Resultado;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -68,6 +70,12 @@ public class GUI extends javax.swing.JFrame {
    public void procesarResultados(DTOAlgoritmos elDTO){
        this.Resultados.setText("");
        String texto="";
+       String fechaHora = "Fecha y hora: ";
+       String fraseOriginal = "Frase original: ";
+       
+       texto += (fechaHora+elDTO.getFechaHora()+"\n");
+       texto += (fraseOriginal+elDTO.getFraseOrigen()+"\n\n");
+       texto += "Resultados: \n";
        for(Resultado resultado : elDTO.getResultadoAlgoritmo()){
            texto += resultado.getNombreAlgoritmo()+"("+resultado.getTipoOperacion()+"):\n";
            texto += resultado.getResultadoAlgoritmo()+" \n\n";
@@ -375,6 +383,11 @@ public class GUI extends javax.swing.JFrame {
             if (!algoritmos.isEmpty()) {
                 if(!frase.isEmpty()){
                     DTOAlgoritmos elDTO = new DTOAlgoritmos();
+                    
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+                    Date date = new Date();
+                    
+                    elDTO.setFechaHora(formatter.format(date));
                     elDTO.setFraseOrigen(frase);
                     elDTO.setModoAlgoritmo(modo);
                     elDTO.setAlgoritmosSeleccionados(algoritmos);

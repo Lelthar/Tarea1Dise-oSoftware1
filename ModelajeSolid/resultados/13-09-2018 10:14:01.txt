@@ -1,0 +1,8 @@
+Nombre algoritmo: Vigenere
+Operación: Decodificación
+Resultado: tarea programada
+
+Nombre algoritmo: Transposicion
+Operación: Decodificación
+Resultado: chtdv dfdodtjqur
+

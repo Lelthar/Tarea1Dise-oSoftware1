@@ -26,8 +26,6 @@ public class EscritorXML implements iEscritor {
     @Override
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  
-        Date date = new Date();  
         Writer writer_xml;
         String encabezado = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         String inicioXML = "<Resultado>\n";
@@ -35,10 +33,11 @@ public class EscritorXML implements iEscritor {
         String nombre = "Nombre algoritmo: ";
         String tipoOperacion = "Operación: ";
         String resultadoOperacion = "Resultado: ";
+        String ubicacion = "resultados/";
         
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
-            writer_xml = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(formatter.format(date)+".xml")));
+            writer_xml = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".xml")));
             writer_xml.write(encabezado);
             writer_xml.write(inicioXML);
             

@@ -1,0 +1,4 @@
+Nombre algoritmo: Transposicion
+Operación: Decodificación
+Resultado: casa
+

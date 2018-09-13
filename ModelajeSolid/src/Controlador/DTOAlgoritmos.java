@@ -19,8 +19,17 @@ public class DTOAlgoritmos {
     private ArrayList<Integer> salidasSeleccionadas;
     private ArrayList<Resultado> resultadoAlgoritmos;
     private boolean modoAlgoritmo;
+    private String fechaHora;
 
     public DTOAlgoritmos() {
+    }
+
+    public String getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(String fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public int getNumeroAlfabeto() {

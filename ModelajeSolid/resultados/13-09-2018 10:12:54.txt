@@ -1,0 +1,8 @@
+Nombre algoritmo: Vigenere
+Operación: Decodificación
+Resultado: zpz)
+
+Nombre algoritmo: Transposicion
+Operación: Decodificación
+Resultado: casa
+

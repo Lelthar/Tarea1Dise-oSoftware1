@@ -26,16 +26,15 @@ public class EscritorTXT  implements iEscritor {
     @Override
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");  
-        Date date = new Date();  
         Writer writer_txt;
         String nombre = "Nombre algoritmo: ";
         String tipoOperacion = "Operación: ";
         String resultadoOperacion = "Resultado: ";
+        String ubicacion = "resultados/";
         
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
-            writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(formatter.format(date)+".txt")));
+            writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".txt")));
         
             for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
                writer_txt.write(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n");

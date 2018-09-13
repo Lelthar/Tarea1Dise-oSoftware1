@@ -41,11 +41,21 @@ public class Vigenere extends Algoritmo{
     @Override
     public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
         String resultado = "";
+        int valorReduccion;
         for (int i = 0; i < mensaje.length(); i++) {
             if (i%2 == 0 && mensaje.charAt(i) != ' ') {
-                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))-2)%alfabeto.size());
+                if ((valorReduccion = alfabeto.indexOf(mensaje.charAt(i))-2)<0) {
+                    resultado += alfabeto.get(alfabeto.size()+valorReduccion);
+                }else {
+                    resultado += alfabeto.get(valorReduccion);
+                }
+                
             }else if (mensaje.charAt(i) != ' '){
-                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))-3)%alfabeto.size());
+                if ((valorReduccion = alfabeto.indexOf(mensaje.charAt(i))-3)<0) {
+                    resultado += alfabeto.get(alfabeto.size()+valorReduccion);
+                }else {
+                    resultado += alfabeto.get(valorReduccion);
+                }
             } else {
                 resultado += ' ';
             }
