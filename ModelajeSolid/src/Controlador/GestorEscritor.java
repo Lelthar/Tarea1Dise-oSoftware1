@@ -41,7 +41,6 @@ public class GestorEscritor {
             paquete = iEscritor.class.getPackage().getName();
             instanciaEscritor = paquete+"."+getListaTipos().get(dtoAlgoritmos.getSalidasSeleccionadas().get(i));
             escritor = (iEscritor) Class.forName(instanciaEscritor).newInstance();
-            System.out.println(instanciaEscritor);
             escritor.Escribir(dtoAlgoritmos);
             
         }
