@@ -38,7 +38,7 @@ public class EscritorXML implements iEscritor {
         
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
-            writer_xml = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".xml")));
+            writer_xml = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora().replace(':', '-')+".xml")));
             writer_xml.write(encabezado);
             writer_xml.write(inicioXML);
             

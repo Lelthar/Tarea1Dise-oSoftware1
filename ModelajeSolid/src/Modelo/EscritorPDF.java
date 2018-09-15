@@ -33,7 +33,7 @@ public class EscritorPDF implements iEscritor {
         try
         {
            //Crea la variable del tipo pdf y le pasa el nombre que tendrá el pdf, el cual será la hora y fecha del sistema.
-           PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".pdf"));
+           PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora().replace(':', '-')+".pdf"));
            document.open();
            for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
                document.add(new Paragraph(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n"));

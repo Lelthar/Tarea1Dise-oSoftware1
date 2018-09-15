@@ -142,8 +142,6 @@ public class CodigoTelefonico extends Algoritmo {
             
             if(!letra.equals(" ") && !letra.equals("*")){
                 
-                
-                
                 numeroDistribucion = Integer.valueOf(letra);
                 i++;
                 letraChar = mensaje.charAt(i);

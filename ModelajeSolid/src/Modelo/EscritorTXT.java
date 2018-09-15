@@ -35,7 +35,7 @@ public class EscritorTXT  implements iEscritor {
         
         try {
             //Inicializa el escritor con el path y nombre del archivo a la variable tipo writer
-            writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora()+".txt")));
+            writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora().replace(':', '-')+".txt")));
         
             for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
                writer_txt.write(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n");
