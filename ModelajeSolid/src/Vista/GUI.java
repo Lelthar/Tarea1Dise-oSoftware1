@@ -377,44 +377,40 @@ public class GUI extends javax.swing.JFrame {
         String frase = vFaseOrigen.getText();
         int alfabeto = cbAlfabeto.getSelectedIndex();
         boolean modo = modoCodificar.isSelected();
-        if(!escritura.isEmpty()){
-            if (!algoritmos.isEmpty()) {
-                if(!frase.isEmpty()){
-                    DTOAlgoritmos elDTO = new DTOAlgoritmos();
-                    
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
-                    Date date = new Date();
-                    
-                    elDTO.setFechaHora(formatter.format(date));
-                    elDTO.setFraseOrigen(frase);
-                    elDTO.setModoAlgoritmo(modo);
-                    elDTO.setAlgoritmosSeleccionados(algoritmos);
+    
+        if (!algoritmos.isEmpty()) {
+            if(!frase.isEmpty()){
+                DTOAlgoritmos elDTO = new DTOAlgoritmos();
 
-                    elDTO.setSalidasSeleccionadas(escritura);
-                    if(elControlador.Validar(elDTO)){
-                        elControlador.predefinirAlfabeto(elDTO);
-                        try {
-                            elControlador.procesarPeticion(elDTO);
-                            procesarResultados(elDTO);
-                            elControlador.escribir(elDTO);
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (InstantiationException ex) {
-                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (IllegalAccessException ex) {
-                            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+                Date date = new Date();
 
+                elDTO.setFechaHora(formatter.format(date));
+                elDTO.setFraseOrigen(frase);
+                elDTO.setModoAlgoritmo(modo);
+                elDTO.setAlgoritmosSeleccionados(algoritmos);
+
+                elDTO.setSalidasSeleccionadas(escritura);
+                if(elControlador.Validar(elDTO)){
+                    elControlador.predefinirAlfabeto(elDTO);
+                    try {
+                        elControlador.procesarPeticion(elDTO);
+                        procesarResultados(elDTO);
+                        elControlador.escribir(elDTO);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Necesita escribir un frase para realizar la operación.");
+
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
+                JOptionPane.showMessageDialog(this, "Necesita escribir un frase para realizar la operación.");
             }
-            
         } else {
-            //JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
+            JOptionPane.showMessageDialog(this, "Necesita seleccionar al menos un algoritmo para realizar la operación.");
         }
         
     }//GEN-LAST:event_jButtonEjecutarActionPerformed
