@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -14,15 +15,114 @@ import java.util.ArrayList;
 public class Binario extends Algoritmo{
     
     
+    
+    
+    
     public Binario(){
-        
+ 
     }
     
     
+    
+    public double logaritmo(int base, int valor){
+        
+        double logaritmo = ( Math.log(valor) ) / (Math.log(base));
+        return logaritmo;
+    }
+    
+    
+    public String ConvertirBinario(int valor){
+        
+        String valorBinario  = Integer.toBinaryString(valor);
+        return valorBinario;
+        
+    }
+    
+    public String RellenarCeros(String codigoBinario, int cantidadDigitos){
+
+        while(codigoBinario.length() < cantidadDigitos){
+            codigoBinario = "0" + codigoBinario;
+        }
+        return codigoBinario;
+    }
+    
+    public ArrayList<String> codigosBinarios(ArrayList<Character> alfabeto){
+        
+        
+        ArrayList<String> listaCodigosBinarios = new ArrayList<String>();
+        String codigoBinario = "";
+        int cantidadCaracteres = alfabeto.size();
+        Double cantidadDigitos = logaritmo(2, cantidadCaracteres); 
+        int cantidadDigitosRedondeado = (int) Math.round(cantidadDigitos);
+
+        int largoCodigoBinario;
+        
+        for(int i = 0 ; i < alfabeto.size() ; i++){
+            
+            codigoBinario = this.ConvertirBinario(i);
+            largoCodigoBinario = codigoBinario.length();
+            if (largoCodigoBinario < cantidadDigitosRedondeado){
+                
+                codigoBinario = RellenarCeros(codigoBinario,cantidadDigitosRedondeado);
+                
+            }
+            listaCodigosBinarios.add(codigoBinario); 
+            
+        }
+        
+        
+        System.out.println(listaCodigosBinarios);
+        return listaCodigosBinarios;
+          
+    }
+    
+    public int posicionLetraEnAlfabeto(ArrayList<Character> alfabeto, char caracter){
+        
+        
+        char caracterActual;
+        
+        for(int i = 0; i < alfabeto.size() ; i++){
+            
+            caracterActual = alfabeto.get(i);
+           // System.out.println("Caracter Actual: " + caracterActual + " Caracter buscado: " + caracter);
+            if(caracterActual == caracter){
+                return i;
+            } 
+        }
+        return -1;
+    }
     @Override
     public String Codificar(String mensaje, ArrayList<Character> alfabeto){
         
-        return "Falta Codificar Binario";
+        
+        ArrayList<String> codigosBinarios = this.codigosBinarios(alfabeto);
+        String mensajeCodificado = "";
+        String letraCodificada;
+        int posicionLetraACodificar;
+        char letraACodificar;
+        
+        
+        for(int i = 0; i < mensaje.length();i++){
+            
+            letraACodificar = mensaje.charAt(i);
+            
+            if(letraACodificar == ' '){
+                
+                mensajeCodificado = mensajeCodificado + "*";
+            }
+            
+            else{
+                
+                posicionLetraACodificar = this.posicionLetraEnAlfabeto(alfabeto, letraACodificar);
+                letraCodificada = codigosBinarios.get(posicionLetraACodificar);
+                mensajeCodificado = mensajeCodificado + " " + letraCodificada ;
+                
+            }
+     
+        }
+        
+        System.out.println("Mensaje Codificado: " + mensajeCodificado);
+        return mensajeCodificado;
     }
     
     @Override
