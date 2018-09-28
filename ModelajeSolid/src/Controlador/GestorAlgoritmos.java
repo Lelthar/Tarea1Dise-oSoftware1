@@ -21,8 +21,8 @@ public class GestorAlgoritmos {
         listaTipos.add("Vigenere");
         listaTipos.add("CodigoTelefonico");
         listaTipos.add("Transposicion");
-        listaTipos.add("CodigoBinario");
-        listaTipos.add("Palabra Clave");
+        listaTipos.add("Binario");
+        listaTipos.add("PalabraClave");
     }
     
     /**
