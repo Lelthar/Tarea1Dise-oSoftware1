@@ -92,7 +92,7 @@ public class Binario extends Algoritmo{
         return -1;
     }
     @Override
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(String mensajeParam, ArrayList<Character> alfabeto){
         
         
         ArrayList<String> codigosBinarios = this.codigosBinarios(alfabeto);
@@ -100,6 +100,8 @@ public class Binario extends Algoritmo{
         String letraCodificada;
         int posicionLetraACodificar;
         char letraACodificar;
+        
+        String mensaje = mensajeParam.toLowerCase();
         
         
         for(int i = 0; i < mensaje.length();i++){
@@ -120,7 +122,8 @@ public class Binario extends Algoritmo{
             }
      
         }
-        
+    
+      
         System.out.println("Mensaje Codificado: " + mensajeCodificado);
         return mensajeCodificado;
     }
@@ -128,7 +131,59 @@ public class Binario extends Algoritmo{
     @Override
     public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
         
-        return "Falta Decodificar Binario";
+        
+        
+        String mensajeDecodificado = "";
+        char caracterActual;
+        char letraDecodificada;
+        String palabraDecodificada = "";
+        String codigoBinario = "";
+        String numeroConvertidoString;
+        int numeroConvertido;
+        
+        int cantidadCaracteres = alfabeto.size();
+        Double cantidadDigitos = logaritmo(2, cantidadCaracteres); 
+        int cantidadDigitosRedondeado = (int) Math.round(cantidadDigitos);
+        
+        
+        for(int i = 0; i < mensaje.length(); i++){
+            
+            
+            caracterActual = mensaje.charAt(i);
+            if(caracterActual != ' ' && caracterActual != '*'){
+                
+                
+                codigoBinario += caracterActual;
+                if(codigoBinario.length() == cantidadDigitosRedondeado){
+                    
+                    numeroConvertido = Integer.parseInt(codigoBinario, 2);
+                    System.out.println("Numero Convertido: " + numeroConvertido);
+                    letraDecodificada = alfabeto.get(numeroConvertido);
+                    palabraDecodificada += letraDecodificada;
+                    codigoBinario = "";
+                }
+                    
+            }
+             
+            else{
+                
+                if(caracterActual == '*'){
+                    
+                    mensajeDecodificado += palabraDecodificada + " ";
+                    palabraDecodificada = "";
+                }
+                
+            }
+            
+            
+            
+            
+        }
+        
+        mensajeDecodificado += palabraDecodificada;
+        
+        System.out.println("mensaje:" + mensajeDecodificado);
+        return mensajeDecodificado;
     }
     
 }
