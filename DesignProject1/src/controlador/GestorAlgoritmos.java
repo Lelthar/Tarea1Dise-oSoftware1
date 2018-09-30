@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.io.File;
 import modelo.Algoritmo;
 import modelo.Resultado;
 import java.util.ArrayList;
@@ -17,12 +18,7 @@ public class GestorAlgoritmos {
     private ArrayList<String> listaTipos;
     
     public GestorAlgoritmos() {
-        listaTipos = new ArrayList<>();
-        listaTipos.add("Vigenere");
-        listaTipos.add("CodigoTelefonico");
-        listaTipos.add("Transposicion");
-        listaTipos.add("Binario");
-        listaTipos.add("PalabraClave");
+        listaTipos = getClassesPackage("modelo.algoritmos");
     }
     
     /**
@@ -70,6 +66,40 @@ public class GestorAlgoritmos {
 
     public void setListaTipos(ArrayList<String> listaTipos) {
         this.listaTipos = listaTipos;
+    }
+    
+    public ArrayList<String> getClassesPackage(String pckgname) {
+    try{
+        ArrayList<String> classes = new ArrayList<>(); 
+        // Get a File object for the package 
+        File directory=null; 
+        try { 
+          directory=new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile()); 
+        } catch(NullPointerException x) { 
+          System.out.println("Nullpointer");
+          throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
+        } 
+        if(directory.exists()) { 
+          // Get the list of the files contained in the package 
+          String[] files=directory.list(); 
+          for(int i=0; i<files.length; i++) { 
+            // we are only interested in .class files 
+            if(files[i].endsWith(".class")) { 
+              // removes the .class extension 
+              classes.add(files[i].substring(0,files[i].indexOf('.')));
+              
+            } 
+          } 
+        } else { 
+            System.out.println("Directory does not exist");
+            throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
+        } 
+        return classes;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+        return null;
     }
     
 }
