@@ -41,10 +41,11 @@ public class GestorAlgoritmos {
             
             resultado  = new Resultado();
             
-            paquete = Algoritmo.class.getPackage().getName();
+            paquete = Algoritmo.class.getPackage().getName()+".algoritmos";
+            System.out.println(paquete);
             instanciaAlgoritmo = paquete+"."+getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i));
             algoritmo = (Algoritmo) Class.forName(instanciaAlgoritmo).newInstance();
-           
+            System.out.println(instanciaAlgoritmo);
             resultado.setNombreAlgoritmo(getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i)));
             
             if(elDTO.isModoAlgoritmo()){
@@ -85,8 +86,9 @@ public class GestorAlgoritmos {
           for(int i=0; i<files.length; i++) { 
             // we are only interested in .class files 
             if(files[i].endsWith(".class")) { 
-              // removes the .class extension 
-              classes.add(files[i].substring(0,files[i].indexOf('.')));
+              
+                classes.add(files[i].substring(0,files[i].indexOf('.')));
+                System.out.println(files[i].substring(0,files[i].indexOf('.')));
               
             } 
           } 
