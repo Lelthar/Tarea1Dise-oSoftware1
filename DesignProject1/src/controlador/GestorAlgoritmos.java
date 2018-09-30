@@ -41,11 +41,9 @@ public class GestorAlgoritmos {
             
             resultado  = new Resultado();
             
-            paquete = Algoritmo.class.getPackage().getName()+".algoritmos";
-            System.out.println(paquete);
+            paquete = Algoritmo.class.getPackage().getName() + ".algoritmos";
             instanciaAlgoritmo = paquete+"."+getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i));
             algoritmo = (Algoritmo) Class.forName(instanciaAlgoritmo).newInstance();
-            System.out.println(instanciaAlgoritmo);
             resultado.setNombreAlgoritmo(getListaTipos().get(elDTO.getAlgoritmosSeleccionados().get(i)));
             
             if(elDTO.isModoAlgoritmo()){
@@ -70,38 +68,38 @@ public class GestorAlgoritmos {
     }
     
     public ArrayList<String> getClassesPackage(String pckgname) {
-    try{
-        ArrayList<String> classes = new ArrayList<>(); 
-        // Get a File object for the package 
-        File directory=null; 
-        try { 
-          directory=new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile()); 
-        } catch(NullPointerException x) { 
-          System.out.println("Nullpointer");
-          throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
-        } 
-        if(directory.exists()) { 
-          // Get the list of the files contained in the package 
-          String[] files=directory.list(); 
-          for(int i=0; i<files.length; i++) { 
-            // we are only interested in .class files 
-            if(files[i].endsWith(".class")) { 
-              
-                classes.add(files[i].substring(0,files[i].indexOf('.')));
-                System.out.println(files[i].substring(0,files[i].indexOf('.')));
-              
-            } 
-          } 
-        } else { 
-            System.out.println("Directory does not exist");
-            throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
-        } 
-        return classes;
+        try{
+            ArrayList<String> classes = new ArrayList<>(); 
 
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-        return null;
+            File directory=null; 
+            try { 
+              directory=new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile()); 
+            } catch(NullPointerException x) { 
+              System.out.println("Nullpointer");
+              throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
+            } 
+            if(directory.exists()) { 
+
+              String[] files=directory.list(); 
+
+              for(int i=0; i<files.length; i++) { 
+
+                if(files[i].endsWith(".class")) { 
+
+                    classes.add(files[i].substring(0,files[i].indexOf('.')));
+
+                } 
+              } 
+            } else { 
+                System.out.println("Directory does not exist");
+                throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
+            } 
+            return classes;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }
