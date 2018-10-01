@@ -97,6 +97,18 @@ public class Servidor {
                 String elLogin=(String) objeto.getDatoEntrada();
                 log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                 //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+            }else if (objeto.getAccion() == TipoAccion.OBTENER_ALGORITMOS){
+                String elLogin=(String) objeto.getDatoEntrada();
+                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+            }else if (objeto.getAccion() == TipoAccion.OBTENER_ESCRITURAS){
+                String elLogin=(String) objeto.getDatoEntrada();
+                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+            }else if (objeto.getAccion() == TipoAccion.GENERAR_FRASE){
+                String elLogin=(String) objeto.getDatoEntrada();
+                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
             }
 
             flujoSalida.writeObject(objeto);
