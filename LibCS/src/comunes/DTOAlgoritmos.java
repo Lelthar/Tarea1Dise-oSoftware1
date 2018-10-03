@@ -19,6 +19,7 @@ public class DTOAlgoritmos {
     private ArrayList<Resultado> resultadoAlgoritmos;
     private boolean modoAlgoritmo;
     private String fechaHora;
+    private String respuesta;
 
     public DTOAlgoritmos() {
     }
@@ -78,5 +79,22 @@ public class DTOAlgoritmos {
     public void setModoAlgoritmo(boolean modoAlgoritmo) {
         this.modoAlgoritmo = modoAlgoritmo;
     }
+
+    public ArrayList<Resultado> getResultadoAlgoritmos() {
+        return resultadoAlgoritmos;
+    }
+
+    public void setResultadoAlgoritmos(ArrayList<Resultado> resultadoAlgoritmos) {
+        this.resultadoAlgoritmos = resultadoAlgoritmos;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+    
     
 }

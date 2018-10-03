@@ -91,32 +91,32 @@ public class Servidor {
             if (null != objeto.getAccion()) // detectar lo que le enviaron...
             switch (objeto.getAccion()) {
                 case CODIFICAR:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
                         break;
                     }
                 case DECODIFICAR:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                         break;
                     }
                 case OBTENER_ALGORITMOS:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText("Se obtuvieron los algoritmos");
+                    objeto.setDatoSalida(controlador.getAlgoritmos().getListaTipos());
                         break;
                     }
                 case OBTENER_ESCRITURAS:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                         break;
                     }
                 case GENERAR_FRASE:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                         break;
                     }
