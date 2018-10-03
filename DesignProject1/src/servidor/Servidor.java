@@ -127,6 +127,7 @@ public class Servidor {
                         break;
                     }
                 default:
+                    log.setText("No existe esa petición en el servidor");
                     break;
             }
 
