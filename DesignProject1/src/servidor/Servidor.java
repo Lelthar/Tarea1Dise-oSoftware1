@@ -5,6 +5,7 @@
  */
 package servidor;
 
+import comunes.DTOAlgoritmos;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -51,7 +52,7 @@ public class Servidor {
     }
    
 
-    public void inicialiceServidor(JTextArea log){
+    public void inicialiceServidor(JTextArea log) throws InstantiationException, IllegalAccessException{
         try {
             servidor = new ServerSocket(PUERTO);
             while (true){
@@ -85,23 +86,20 @@ public class Servidor {
         }
     }
 
-    private void procesePeticion(JTextArea log) {
+    private void procesePeticion(JTextArea log) throws InstantiationException, IllegalAccessException {
         try {
             OBJComunicacion objeto = (OBJComunicacion) flujoEntrada.readObject();
             if (null != objeto.getAccion()) // detectar lo que le enviaron...
             switch (objeto.getAccion()) {
-                case CODIFICAR:{
+                case PETICION:{
                     //String elLogin=(String) objeto.getDatoEntrada();
                     //log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
+                    DTOAlgoritmos consulta = (DTOAlgoritmos) objeto.getDatoEntrada();
+                    objeto.setDatoSalida(controlador.procesarPeticion(consulta)); 
                         break;
                     }
-                case DECODIFICAR:{
-                    //String elLogin=(String) objeto.getDatoEntrada();
-                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
-                        break;
-                    }
+             
                 case OBTENER_ALGORITMOS:{
                     //String elLogin=(String) objeto.getDatoEntrada();
                     log.setText("Se obtuvieron los algoritmos");
