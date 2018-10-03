@@ -23,7 +23,9 @@ public class EscritorXML implements iEscritor {
 
     public EscritorXML() {
     }
+    /*
     
+    */
     @Override
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
