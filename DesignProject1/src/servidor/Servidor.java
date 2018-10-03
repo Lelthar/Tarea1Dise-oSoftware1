@@ -100,7 +100,7 @@ public class Servidor {
                     consulta = controlador.procesarPeticion(consulta);
                     log.setText("");
                     if ( consulta.getRespuesta() != null) {
-                        log.setText("Se realizó la peticion "+consulta.getRespuesta());
+                        log.setText("Se realizó la peticion "+consulta.getResultadoAlgoritmos().get(0));
                     } else {
                         log.setText("Ocurrió un error realizando la peticion");
                     }  
