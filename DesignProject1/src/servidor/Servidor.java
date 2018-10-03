@@ -78,8 +78,11 @@ public class Servidor {
                 log.setText(log.getText()+ "\nDesconectando...");
                 log.setCaretPosition(log.getText().length());  // manda el log al final
                 flujoEntrada.close();
+                log.setText(log.getText()+ "\nError 2");
                 flujoSalida.close();
+                log.setText(log.getText()+ "\nError 3");
                 cliente.close();
+                log.setText(log.getText()+ "\nError 4");
             }
         } catch (IOException ex) {
             System.out.println("Problemas creando el servidor en el puerto "+ PUERTO);
@@ -99,12 +102,14 @@ public class Servidor {
                     log.setText("Entró a la petición");
                     consulta = controlador.procesarPeticion(consulta);
                     log.setText("");
+                    System.out.println("Error1");
                     if ( consulta.getRespuesta() != null) {
-                        log.setText("Se realizó la peticion "+consulta.getResultadoAlgoritmos().get(0));
+                        log.setText(log.getText()+ "\nSe realizó la peticion "+consulta.getResultadoAlgoritmos().get(0));
                     } else {
-                        log.setText("Ocurrió un error realizando la peticion");
+                        log.setText(log.getText()+ "\nOcurrió un error realizando la peticion");
                     }  
-                    objeto.setDatoSalida(consulta); 
+                    objeto.setDatoSalida(consulta);
+                    log.setText(log.getText()+ "\nError 1");
                         break;
                     }
              
@@ -133,6 +138,7 @@ public class Servidor {
 
             flujoSalida.writeObject(objeto);
         } catch (IOException ex) {
+            log.setText(log.getText()+ "\n"+ex.toString());
             System.out.println("Problemas leyendo o escribiendo en el flujo entrada/salida");
         } catch (ClassNotFoundException ex) {
             System.out.println("Problemas en la conversion del objeto recibido...");

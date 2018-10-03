@@ -5,11 +5,13 @@
  */
 package comunes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gerald
  */
-public class Resultado {
+public class Resultado implements Serializable {
     private String nombreAlgoritmo;
     private String resultadoAlgoritmo;
     private String tipoOperacion;

@@ -22,11 +22,11 @@ public class UIgui {
     
     public ArrayList<String> obtenerAlgoritmos() {
         try {
-            OBJComunicacion Objeto=new OBJComunicacion(null, TipoAccion.OBTENER_ALGORITMOS);
-            Conexion c=new Conexion();
+            OBJComunicacion objeto = new OBJComunicacion(null, TipoAccion.OBTENER_ALGORITMOS);
+            Conexion c = new Conexion();
             
-            Objeto=c.conecteServidor(Objeto);
-            return (ArrayList<String>)Objeto.getDatoSalida();
+            objeto = c.conecteServidor(objeto);
+            return (ArrayList<String>)objeto.getDatoSalida();
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(UIgui.class.getName()).log(Level.SEVERE, null, ex);

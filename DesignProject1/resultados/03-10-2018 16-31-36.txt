@@ -1,0 +1,4 @@
+Nombre algoritmo: Vigenere
+Operación: Codificación
+Resultado: czf
+

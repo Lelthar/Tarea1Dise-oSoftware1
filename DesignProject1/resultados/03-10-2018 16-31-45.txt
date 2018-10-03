@@ -1,0 +1,8 @@
+Nombre algoritmo: Vigenere
+Operación: Codificación
+Resultado: czf
+
+Nombre algoritmo: Transposicion
+Operación: Codificación
+Resultado: dwa
+
