@@ -96,7 +96,14 @@ public class Servidor {
                     //log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
                     DTOAlgoritmos consulta = (DTOAlgoritmos) objeto.getDatoEntrada();
-                    objeto.setDatoSalida(controlador.procesarPeticion(consulta)); 
+                    consulta = controlador.procesarPeticion(consulta);
+                    log.setText("");
+                    if ( consulta.getRespuesta() != null) {
+                        log.setText("Se realizó la peticion "+consulta.getRespuesta());
+                    } else {
+                        log.setText("Ocurrió un error realizando la peticion");
+                    }  
+                    objeto.setDatoSalida(consulta); 
                         break;
                     }
              
