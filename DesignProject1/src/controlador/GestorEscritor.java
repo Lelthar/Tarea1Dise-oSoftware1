@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import comunes.DTOAlgoritmos;
 import modelo.iEscritor;
 import java.util.ArrayList;
 

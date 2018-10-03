@@ -5,9 +5,10 @@
  */
 package controlador;
 
+import comunes.DTOAlgoritmos;
 import java.io.File;
 import modelo.Algoritmo;
-import modelo.Resultado;
+import comunes.Resultado;
 import java.util.ArrayList;
 
 /**

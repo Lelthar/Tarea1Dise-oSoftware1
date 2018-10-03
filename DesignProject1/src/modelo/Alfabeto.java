@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import controlador.DTOAlgoritmos;
+import comunes.DTOAlgoritmos;
 import controlador.iValidable;
 import java.util.ArrayList;
 

@@ -88,27 +88,40 @@ public class Servidor {
     private void procesePeticion(JTextArea log) {
         try {
             OBJComunicacion objeto = (OBJComunicacion) flujoEntrada.readObject();
-            // detectar lo que le enviaron...
-            if (objeto.getAccion() == TipoAccion.CODIFICAR){
-                String elLogin=(String) objeto.getDatoEntrada();
-                log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
-                //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
-            }else if (objeto.getAccion() == TipoAccion.DECODIFICAR){
-                String elLogin=(String) objeto.getDatoEntrada();
-                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
-            }else if (objeto.getAccion() == TipoAccion.OBTENER_ALGORITMOS){
-                String elLogin=(String) objeto.getDatoEntrada();
-                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
-            }else if (objeto.getAccion() == TipoAccion.OBTENER_ESCRITURAS){
-                String elLogin=(String) objeto.getDatoEntrada();
-                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
-            }else if (objeto.getAccion() == TipoAccion.GENERAR_FRASE){
-                String elLogin=(String) objeto.getDatoEntrada();
-                log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+            if (null != objeto.getAccion()) // detectar lo que le enviaron...
+            switch (objeto.getAccion()) {
+                case CODIFICAR:{
+                    String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
+                        break;
+                    }
+                case DECODIFICAR:{
+                    String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                        break;
+                    }
+                case OBTENER_ALGORITMOS:{
+                    String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                        break;
+                    }
+                case OBTENER_ESCRITURAS:{
+                    String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                        break;
+                    }
+                case GENERAR_FRASE:{
+                    String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                        break;
+                    }
+                default:
+                    break;
             }
 
             flujoSalida.writeObject(objeto);

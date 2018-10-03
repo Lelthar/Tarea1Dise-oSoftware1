@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import comunes.DTOAlgoritmos;
 import modelo.Alfabeto;
 import java.util.ArrayList;
 import java.util.stream.Collectors;

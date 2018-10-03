@@ -6,9 +6,9 @@
 package vista;
 
 import controlador.Controlador;
-import controlador.DTOAlgoritmos;
+import comunes.DTOAlgoritmos;
 import modelo.Alfabeto;
-import modelo.Resultado;
+import comunes.Resultado;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

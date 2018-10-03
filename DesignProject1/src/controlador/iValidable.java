@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import comunes.DTOAlgoritmos;
+
 /**
  *
  * @author gerald

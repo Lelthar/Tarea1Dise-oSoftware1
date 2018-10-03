@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import controlador.DTOAlgoritmos;
+import comunes.DTOAlgoritmos;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
