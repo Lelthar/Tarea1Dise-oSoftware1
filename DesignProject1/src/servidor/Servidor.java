@@ -5,6 +5,7 @@
  */
 package servidor;
 
+import comunes.DTOAlgoritmos;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -51,7 +52,7 @@ public class Servidor {
     }
    
 
-    public void inicialiceServidor(JTextArea log){
+    public void inicialiceServidor(JTextArea log) throws InstantiationException, IllegalAccessException{
         try {
             servidor = new ServerSocket(PUERTO);
             while (true){
@@ -85,42 +86,48 @@ public class Servidor {
         }
     }
 
-    private void procesePeticion(JTextArea log) {
+    private void procesePeticion(JTextArea log) throws InstantiationException, IllegalAccessException {
         try {
             OBJComunicacion objeto = (OBJComunicacion) flujoEntrada.readObject();
             if (null != objeto.getAccion()) // detectar lo que le enviaron...
             switch (objeto.getAccion()) {
-                case CODIFICAR:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
+                case PETICION:{
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
+                    DTOAlgoritmos consulta = (DTOAlgoritmos) objeto.getDatoEntrada();
+                    log.setText("Entró a la petición");
+                    consulta = controlador.procesarPeticion(consulta);
+                    log.setText("");
+                    if ( consulta.getRespuesta() != null) {
+                        log.setText("Se realizó la peticion "+consulta.getRespuesta());
+                    } else {
+                        log.setText("Ocurrió un error realizando la peticion");
+                    }  
+                    objeto.setDatoSalida(consulta); 
                         break;
                     }
-                case DECODIFICAR:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
-                        break;
-                    }
+             
                 case OBTENER_ALGORITMOS:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    log.setText("Se obtuvieron los algoritmos");
+                    objeto.setDatoSalida(controlador.getAlgoritmos().getListaTipos());
                         break;
                     }
                 case OBTENER_ESCRITURAS:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                         break;
                     }
                 case GENERAR_FRASE:{
-                    String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                         break;
                     }
                 default:
+                    log.setText("No existe esa petición en el servidor");
                     break;
             }
 

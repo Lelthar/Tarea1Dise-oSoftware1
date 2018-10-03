@@ -42,8 +42,17 @@ public class Controlador implements iValidable  {
      * Encargado de realizar una petición de codificación/decodificación
      * @param elDTO 
      */
-    public void procesarPeticion(DTOAlgoritmos elDTO) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
-        this.gestorAlgoritmos.ejecutarAlgoritmo(elDTO, getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos());
+    public DTOAlgoritmos procesarPeticion(DTOAlgoritmos elDTO) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+        if ( Validar(elDTO )) {
+            predefinirAlfabeto(elDTO);
+            this.gestorAlgoritmos.ejecutarAlgoritmo(elDTO, getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos());
+            escribir(elDTO);
+            elDTO.setRespuesta("OK");
+            return elDTO;
+        } else {
+            elDTO.setRespuesta("Caracteres de la entrada no pertenecen al alfabeto seleccionado.");
+            return elDTO;
+        }
           
     }
     
