@@ -6,6 +6,7 @@
 package UI;
 
 import Conexion.Conexion;
+import comunes.DTOAlgoritmos;
 import comunes.OBJComunicacion;
 import comunes.TipoAccion;
 import java.net.UnknownHostException;
@@ -33,4 +34,17 @@ public class UIgui {
         return null;
     }
     
+    public DTOAlgoritmos procesarPeticion(DTOAlgoritmos elDTO){
+        try {
+            OBJComunicacion objeto = new OBJComunicacion(elDTO,TipoAccion.PETICION);
+            Conexion conexion = new Conexion();
+            
+            objeto = conexion.conecteServidor(objeto);
+            return (DTOAlgoritmos) objeto.getDatoSalida(); 
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UIgui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

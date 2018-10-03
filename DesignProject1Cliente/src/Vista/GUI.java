@@ -47,10 +47,8 @@ public class GUI extends javax.swing.JFrame {
     public void cargarAlgoritmosGUI(){
         DefaultListModel<String> model = new DefaultListModel<>(); 
         ArrayList<String> algorimos = Uigui.obtenerAlgoritmos(); 
-        System.out.println("Cantidad de algoritmos:"+algorimos.size());
         for (int i=0;i<algorimos.size();i++) {
            model.addElement(algorimos.get(i));
-            System.out.println("Algoritmos: "+algorimos.get(i));
         }
         
         this.lbAlgoritmoE.setModel(model);
@@ -74,6 +72,26 @@ public class GUI extends javax.swing.JFrame {
            texto += resultado.getResultadoAlgoritmo()+" \n\n";
        }
        this.Resultados.setText(texto);
+   }
+   
+   /**
+    * 
+     * @param elDto
+    */
+   public void enviarPeticion(DTOAlgoritmos elDto){
+
+       DTOAlgoritmos dtoRespuesta = Uigui.procesarPeticion(elDto);
+       
+       if(dtoRespuesta!=null){
+            if(dtoRespuesta.getRespuesta().equals("OK")){
+                JOptionPane.showMessageDialog(this, elDto.toString());
+            }else{
+                JOptionPane.showMessageDialog(this, "No se puedo realizar operación.");
+            }
+       }else{
+           JOptionPane.showMessageDialog(this, "Respuesta null.");
+       }
+        
    }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -386,6 +404,10 @@ public class GUI extends javax.swing.JFrame {
                 elDTO.setAlgoritmosSeleccionados(algoritmos);
 
                 elDTO.setSalidasSeleccionadas(escritura);
+                
+                elDTO.setNumeroAlfabeto(0);
+                
+                enviarPeticion(elDTO);
                 
             } else {
                 JOptionPane.showMessageDialog(this, "Necesita escribir un frase para realizar la operación.");

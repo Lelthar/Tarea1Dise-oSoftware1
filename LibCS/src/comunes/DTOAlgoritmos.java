@@ -5,13 +5,14 @@
  */
 package comunes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author gerald
  */
-public class DTOAlgoritmos {
+public class DTOAlgoritmos implements Serializable{
     private int numeroAlfabeto;
     private String fraseOrigen;
     private ArrayList<Integer> algoritmosSeleccionados;
