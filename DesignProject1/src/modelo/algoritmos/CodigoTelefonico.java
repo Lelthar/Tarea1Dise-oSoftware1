@@ -67,9 +67,9 @@ public class CodigoTelefonico extends Algoritmo {
     
     
     @Override
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
-        mensaje = mensaje.toLowerCase();
+        String mensajeProcesar = (String) mensaje.get(0);
         
         ArrayList<String> distribucion = this.Distribucion(alfabeto);
         System.out.println(distribucion);
@@ -81,9 +81,9 @@ public class CodigoTelefonico extends Algoritmo {
         int numeroDistribucion;
         int posicionEnDistribucion;
         
-        for(int i = 0; i < mensaje.length() ; i++){
+        for(int i = 0; i < mensajeProcesar.length() ; i++){
                   
-            letraChar = mensaje.charAt(i);
+            letraChar = mensajeProcesar.charAt(i);
             letra = String.valueOf(letraChar);
             
             
@@ -119,10 +119,11 @@ public class CodigoTelefonico extends Algoritmo {
           
         return mensajeCodificado;
     }
+    
     @Override
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
-        mensaje = mensaje.toLowerCase();
+        String mensajeProcesar = (String) mensaje.get(0);
         String mensajeDecodificado = ""; 
         ArrayList<String> distribucion = this.Distribucion(alfabeto);
         String letra ; 
@@ -134,9 +135,9 @@ public class CodigoTelefonico extends Algoritmo {
         int numeroDistribucion; 
         int posicionDistribucion;
         
-        for (int i = 0 ; i < mensaje.length() ; i++){
+        for (int i = 0 ; i < mensajeProcesar.length() ; i++){
             
-            letraChar = mensaje.charAt(i);
+            letraChar = mensajeProcesar.charAt(i);
             letra = String.valueOf(letraChar);
             System.out.println("Letra:");
             System.out.println(letra);
@@ -145,7 +146,7 @@ public class CodigoTelefonico extends Algoritmo {
                 
                 numeroDistribucion = Integer.valueOf(letra);
                 i++;
-                letraChar = mensaje.charAt(i);
+                letraChar = mensajeProcesar.charAt(i);
                 letra = String.valueOf(letraChar);
                 posicionDistribucion = Integer.valueOf(letra);
                 caracteresPorNumero = distribucion.get(numeroDistribucion);

@@ -49,10 +49,10 @@ public class GestorAlgoritmos {
             
             if(elDTO.isModoAlgoritmo()){
                 resultado.setTipoOperacion("Codificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getFraseOrigen(),alfabeto));
+                resultado.setResultadoAlgoritmo(algoritmo.Codificar(elDTO.getDatosEntrada(),alfabeto));
             }else{
                 resultado.setTipoOperacion("Decodificación");
-                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getFraseOrigen(),alfabeto));
+                resultado.setResultadoAlgoritmo(algoritmo.Decodificar(elDTO.getDatosEntrada(),alfabeto));
             }
             resultados.add(resultado);
             

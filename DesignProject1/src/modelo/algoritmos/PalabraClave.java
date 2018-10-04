@@ -20,13 +20,13 @@ public class PalabraClave extends Algoritmo{
     }
     
     @Override
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         return "Falta Codificar Binario";
     }
     
     @Override
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         return "Falta Decodificar Binario";
     }

@@ -75,7 +75,7 @@ public class Binario extends Algoritmo{
     }
     
     @Override
-    public String Codificar(String mensajeParam, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensajeParam, ArrayList<Character> alfabeto){
         
         
         ArrayList<String> codigosBinarios = this.codigosBinarios(alfabeto);
@@ -84,7 +84,7 @@ public class Binario extends Algoritmo{
         int posicionLetraACodificar;
         char letraACodificar;
         
-        String mensaje = mensajeParam.toLowerCase();
+        String mensaje = (String) mensajeParam.get(0);
         
         
         for(int i = 0; i < mensaje.length();i++){
@@ -112,7 +112,7 @@ public class Binario extends Algoritmo{
     }
     
     @Override
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         
         
@@ -128,11 +128,12 @@ public class Binario extends Algoritmo{
         Double cantidadDigitos = logaritmo(2, cantidadCaracteres); 
         int cantidadDigitosRedondeado = (int) Math.round(cantidadDigitos);
         
+        String mensajeBinario = (String) mensaje.get(0);
         
-        for(int i = 0; i < mensaje.length(); i++){
+        for(int i = 0; i < mensajeBinario.length(); i++){
             
             
-            caracterActual = mensaje.charAt(i);
+            caracterActual = mensajeBinario.charAt(i);
             if(caracterActual != ' ' && caracterActual != '*'){
                 
                 

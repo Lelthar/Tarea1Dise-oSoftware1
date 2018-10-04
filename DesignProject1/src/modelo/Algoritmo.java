@@ -33,12 +33,12 @@ public class Algoritmo {
         this.nombreAlgoritmo = nombreAlgoritmo;
     }
     
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
      
         return "A";
     }
     
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         return "B";
     }

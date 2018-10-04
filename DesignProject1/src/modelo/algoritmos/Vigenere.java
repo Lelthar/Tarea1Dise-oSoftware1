@@ -24,13 +24,19 @@ public class Vigenere extends Algoritmo{
     
     
     @Override
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
+        
+        String mensajeProcesar = (String) mensaje.get(0);
+        int primerCifra = ((int ) mensaje.get(1)) / 10 ;
+        int segundaCifra = ((int ) mensaje.get(1)) % 10;
+        
         String resultado = "";
-        for (int i = 0; i < mensaje.length(); i++) {
-            if (i%2 == 0 && mensaje.charAt(i) != ' ') {
-                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))+2)%alfabeto.size());
-            }else if (mensaje.charAt(i) != ' '){
-                resultado += alfabeto.get((alfabeto.indexOf(mensaje.charAt(i))+3)%alfabeto.size());
+        
+        for (int i = 0; i < mensajeProcesar.length(); i++) {
+            if (i%2 == 0 && mensajeProcesar.charAt(i) != ' ') {
+                resultado += alfabeto.get((alfabeto.indexOf(mensajeProcesar.charAt(i))+primerCifra)%alfabeto.size());
+            }else if (mensajeProcesar.charAt(i) != ' '){
+                resultado += alfabeto.get((alfabeto.indexOf(mensajeProcesar.charAt(i))+segundaCifra)%alfabeto.size());
             } else {
                 resultado += ' ';
             }
@@ -40,19 +46,24 @@ public class Vigenere extends Algoritmo{
     
     
     @Override
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
+        
+        String mensajeProcesar = (String) mensaje.get(0);
+        int primerCifra = ((int ) mensaje.get(1)) / 10 ;
+        int segundaCifra = ((int ) mensaje.get(1)) % 10;
         String resultado = "";
         int valorReduccion;
-        for (int i = 0; i < mensaje.length(); i++) {
-            if (i%2 == 0 && mensaje.charAt(i) != ' ') {
-                if ((valorReduccion = alfabeto.indexOf(mensaje.charAt(i))-2)<0) {
+        
+        for (int i = 0; i < mensajeProcesar.length(); i++) {
+            if (i%2 == 0 && mensajeProcesar.charAt(i) != ' ') {
+                if ((valorReduccion = alfabeto.indexOf(mensajeProcesar.charAt(i))-primerCifra)<0) {
                     resultado += alfabeto.get(alfabeto.size()+valorReduccion);
                 }else {
                     resultado += alfabeto.get(valorReduccion);
                 }
                 
-            }else if (mensaje.charAt(i) != ' '){
-                if ((valorReduccion = alfabeto.indexOf(mensaje.charAt(i))-3)<0) {
+            }else if (mensajeProcesar.charAt(i) != ' '){
+                if ((valorReduccion = alfabeto.indexOf(mensajeProcesar.charAt(i))-segundaCifra)<0) {
                     resultado += alfabeto.get(alfabeto.size()+valorReduccion);
                 }else {
                     resultado += alfabeto.get(valorReduccion);

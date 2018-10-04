@@ -58,12 +58,14 @@ public class Transposicion extends Algoritmo {
     
     
     @Override
-    public String Codificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
+        
+        String mensajeProcesar = (String) mensaje.get(0);
         String conversion = "";
         StringBuilder resultado = new StringBuilder();
         
-        for (int i = mensaje.length(); i > 0 ; i--) {
-            conversion += mensaje.charAt(i-1);
+        for (int i = mensajeProcesar.length(); i > 0 ; i--) {
+            conversion += mensajeProcesar.charAt(i-1);
         }
         
         ArrayList<String> listaMensaje = dividirMensaje(conversion);
@@ -78,12 +80,14 @@ public class Transposicion extends Algoritmo {
     }
     
     @Override
-    public String Decodificar(String mensaje, ArrayList<Character> alfabeto){
+    public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
+        
+        String mensajeProcesar = (String) mensaje.get(0);
         String conversion = "";
         StringBuilder resultado = new StringBuilder();
         
-        for (int i = mensaje.length(); i > 0 ; i--) {
-            conversion += mensaje.charAt(i-1);
+        for (int i = mensajeProcesar.length(); i > 0 ; i--) {
+            conversion += mensajeProcesar.charAt(i-1);
         }
         
         ArrayList<String> listaMensaje = dividirMensaje(conversion);

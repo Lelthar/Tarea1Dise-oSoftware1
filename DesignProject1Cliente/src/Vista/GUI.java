@@ -65,7 +65,7 @@ public class GUI extends javax.swing.JFrame {
        String fraseOriginal = "Frase original: ";
        
        texto += (fechaHora+elDTO.getFechaHora()+"\n");
-       texto += (fraseOriginal+elDTO.getFraseOrigen()+"\n\n");
+       texto += (fraseOriginal+elDTO.getDatosEntrada().get(0)+"\n\n");
        texto += "Resultados: \n";
        for(Resultado resultado : elDTO.getResultadoAlgoritmo()){
            texto += resultado.getNombreAlgoritmo()+"("+resultado.getTipoOperacion()+"):\n";
@@ -399,7 +399,12 @@ public class GUI extends javax.swing.JFrame {
                 Date date = new Date();
 
                 elDTO.setFechaHora(formatter.format(date));
-                elDTO.setFraseOrigen(frase);
+                
+                ArrayList<Object> datosEntrada = new ArrayList<>();
+                datosEntrada.add(frase);
+                datosEntrada.add(23); // Modificar para que se haga desde la interfaz grafica
+                
+                elDTO.setDatosEntrada(datosEntrada);
                 elDTO.setModoAlgoritmo(modo);
                 elDTO.setAlgoritmosSeleccionados(algoritmos);
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DTOAlgoritmos implements Serializable{
     private int numeroAlfabeto;
-    private String fraseOrigen;
+    private ArrayList<Object> datosEntrada; //cambio
     private ArrayList<Integer> algoritmosSeleccionados;
     private ArrayList<Integer> salidasSeleccionadas;
     private ArrayList<Resultado> resultadoAlgoritmos;
@@ -39,14 +39,6 @@ public class DTOAlgoritmos implements Serializable{
 
     public void setNumeroAlfabeto(int numeroAlfabeto) {
         this.numeroAlfabeto = numeroAlfabeto;
-    }
-
-    public String getFraseOrigen() {
-        return fraseOrigen;
-    }
-
-    public void setFraseOrigen(String fraseOrigen) {
-        this.fraseOrigen = fraseOrigen;
     }
 
     public ArrayList<Integer> getAlgoritmosSeleccionados() {
@@ -96,6 +88,16 @@ public class DTOAlgoritmos implements Serializable{
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
+
+    public ArrayList<Object> getDatosEntrada() {
+        return datosEntrada;
+    }
+
+    public void setDatosEntrada(ArrayList<Object> datosEntrada) {
+        this.datosEntrada = datosEntrada;
+    }
+    
+    
     
     
 }
