@@ -43,8 +43,8 @@ public class Controlador implements iValidable  {
      * @param elDTO 
      */
     public DTOAlgoritmos procesarPeticion(DTOAlgoritmos elDTO) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+        predefinirAlfabeto(elDTO);
         if ( Validar(elDTO )) {
-            predefinirAlfabeto(elDTO);
             this.gestorAlgoritmos.ejecutarAlgoritmo(elDTO, getGestorAlfabeto().getAlfabetos().get(elDTO.getNumeroAlfabeto()).getSimbolos());
             escribir(elDTO);
             elDTO.setRespuesta("OK");
@@ -83,6 +83,14 @@ public class Controlador implements iValidable  {
     
     @Override
     public boolean Validar(DTOAlgoritmos DtoAlgoritmos) {
+        
+        String frase = (String) DtoAlgoritmos.getDatosEntrada().get(0);
+        
+        for (int i = 0; i < frase.length(); i++) {
+            if ( !this.alfabetoActual.getSimbolos().contains(frase.charAt(i)) )
+                return false;
+        }
+        
         return true;
     }
 
