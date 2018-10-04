@@ -22,13 +22,13 @@ import modelo.Algoritmo;
  */
 public class GestorAlfabeto implements iValidable {
     
-    private ArrayList<Alfabeto> alfabetos; 
+    private ArrayList<Alfabeto> alfabetos;
+    private ArrayList<String> listaAlfabetos;
 
-    public GestorAlfabeto(ArrayList<Alfabeto> alfabetos) {
+    public GestorAlfabeto() {
         
-        this.alfabetos = alfabetos;
-        cargarDefault();
-        this.cargarAlfabetos("Alfabetos");
+        this.actualizarAlfabetos();
+    
     }   
     
     public ArrayList<Alfabeto> getAlfabetos() {
@@ -60,105 +60,106 @@ public class GestorAlfabeto implements iValidable {
     
     public ArrayList<Character> ObtenerAlfabetoDeArchivo(File file) throws FileNotFoundException, IOException{
         
-        System.out.println(file.getAbsolutePath());
-        
         FileReader fileReader = new FileReader(file);
         BufferedReader br = new BufferedReader(fileReader);
         
-        ArrayList<Character> alfabeto = new ArrayList<Character>();
-        char simbolo;
+        ArrayList<Character> alfabeto;
         String line =  br.readLine();
         
-        while (line != null) {
+        if (line != null) {
+            alfabeto = new ArrayList<>(
+                                       line.chars()
+                                       .mapToObj(e -> (char) e)
+                                        .collect(
+                                            Collectors.toList()
+                                        )
+                                        );
             
-
-            for(int i = 0; i < line.length() ; i++){
-                simbolo = line.charAt(i);
-                alfabeto.add(simbolo);
-                
-            }
-            
-            
-            line = br.readLine();
+        } else {
+            alfabeto = new ArrayList<>();
         }
         
-        System.out.println("lfabeto" + alfabeto);
         return alfabeto;
 
     }
+    
+    public void actualizarAlfabetos(){
+        
+        alfabetos = new ArrayList<>();
+        listaAlfabetos = new ArrayList<>();
+        
+        this.cargarDefault();
+        this.cargarAlfabetos("Alfabetos");
+    }
         
     
-    public ArrayList<String> cargarAlfabetos(String pckgname){ // Carga todos los alfabetos encontrados en la carpeta Alfabetos
-        
-        
-        
-        
+    public void cargarAlfabetos(String pckgname){ // Carga todos los alfabetos encontrados en la carpeta Alfabetos
+          
         try{
             ArrayList<String> archivosAlfabeto = new ArrayList<>(); 
 
             File directory=null; 
             try { 
-              directory = new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile());
+                directory = new File(Thread.currentThread().getContextClassLoader().getResource(pckgname.replace('.', '/')).getFile());
               
             } 
             catch(NullPointerException x) {
                 
-              System.out.println("Nullpointer");
-              throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
-            }
-            
+                System.out.println("Nullpointer");
+                throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
+            } 
             
             if(directory.exists()) { 
 
-              String[] files = directory.list(); 
-              File fileAlfabeto;
-              String pathFileAlfabeto ;
-              String pathCarpetaAlfabeto = "src/Alfabetos/" ;
-              ArrayList<String> listaPathsArchivos = new ArrayList<String>();
-              
-              //System.out.println(directory.getAbsolutePath());
-              
-              for(int i=0; i<files.length; i++) { 
-                  
-                  if(files[i].endsWith(".txt")) {
-                      pathFileAlfabeto = pathCarpetaAlfabeto + files[i];
-                      archivosAlfabeto.add(files[i].substring(0,files[i].indexOf('.')));
-                      listaPathsArchivos.add(pathFileAlfabeto);
-                  }
-              }
-              
-              ArrayList<Character> simbolosAlfabeto;
-              String nombreAlfabeto;
-              
-              for(int i = 0 ; i < listaPathsArchivos.size() ; i++){
-                  
-                  
-                  fileAlfabeto = new File(listaPathsArchivos.get(i));
-                  simbolosAlfabeto = this.ObtenerAlfabetoDeArchivo(fileAlfabeto);
-                  nombreAlfabeto = archivosAlfabeto.get(i);
-                  Alfabeto alfabeto = new Alfabeto(i,nombreAlfabeto, simbolosAlfabeto);
-                  alfabetos.add(alfabeto);
+                String[] files = directory.list(); 
+                File fileAlfabeto;
+                String pathFileAlfabeto ;
+                String pathCarpetaAlfabeto = "src/Alfabetos/" ;
+                ArrayList<String> listaPathsArchivos = new ArrayList<String>();
+
+                for(int i=0; i<files.length; i++) { 
+
+                    if(files[i].endsWith(".txt")) {
+                        pathFileAlfabeto = pathCarpetaAlfabeto + files[i];
+                        archivosAlfabeto.add(files[i].substring(0,files[i].indexOf('.')));
+                        listaPathsArchivos.add(pathFileAlfabeto);
+                    }
+                }
+
+                ArrayList<Character> simbolosAlfabeto;
+                String nombreAlfabeto;
+
+                for(int i = 0 ; i < listaPathsArchivos.size() ; i++){
+
+                    fileAlfabeto = new File(listaPathsArchivos.get(i));
+                    simbolosAlfabeto = this.ObtenerAlfabetoDeArchivo(fileAlfabeto);
+                    nombreAlfabeto = archivosAlfabeto.get(i);
+                    Alfabeto alfabeto = new Alfabeto(i,nombreAlfabeto, simbolosAlfabeto);
+                    alfabetos.add(alfabeto);
+                    listaAlfabetos.add(nombreAlfabeto);
                   
               }
               
-                  
-                  
               
-            } else {
-                
+            } else {      
                 System.out.println("Directory does not exist");
                 throw new ClassNotFoundException(pckgname+" does not appear to be a valid package"); 
             }
             
-            System.out.println(archivosAlfabeto);
-            return archivosAlfabeto;
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
-        
-        
+
+    public ArrayList<String> getListaAlfabetos() {
+        return listaAlfabetos;
     }
+
+    public void setListaAlfabetos(ArrayList<String> listaAlfabetos) {
+        this.listaAlfabetos = listaAlfabetos;
+    }
+        
+        
+}
 

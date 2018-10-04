@@ -115,7 +115,7 @@ public class Servidor {
              
                 case OBTENER_ALGORITMOS:{
                     //String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText("Se obtuvieron los algoritmos");
+                    log.setText(log+"\nSe obtuvieron los algoritmos");
                     objeto.setDatoSalida(controlador.getAlgoritmos().getListaTipos());
                         break;
                     }
@@ -123,6 +123,15 @@ public class Servidor {
                     //String elLogin=(String) objeto.getDatoEntrada();
                     //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                        break;
+                    }
+                
+                case OBTENER_ALFABETOS:{
+                    //String elLogin=(String) objeto.getDatoEntrada();
+                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
+                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                    log.setText(log+"\nSe obtuvieron los alfabetos");
+                    objeto.setDatoSalida(controlador.obtenerAlfabetos());
                         break;
                     }
                 case GENERAR_FRASE:{
