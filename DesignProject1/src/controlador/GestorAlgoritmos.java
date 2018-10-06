@@ -90,9 +90,9 @@ public class GestorAlgoritmos {
               for(int i=0; i<files.length; i++) { 
 
                 if(files[i].endsWith(".class")) { 
-
+                    
                     classes.add(files[i].substring(0,files[i].indexOf('.')));
-
+                    
                 } 
               } 
             } else { 
@@ -112,8 +112,14 @@ public class GestorAlgoritmos {
         File dest = new File("src/modelo/algoritmos/"+name);
        
         try {
-            Files.copy(source.toPath(), dest.toPath());
-             return true;
+            if (!dest.exists()){
+                Files.copy(source.toPath(), dest.toPath());
+                return true;
+            }else {
+                System.out.println("Ya existe");
+                return false;
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(GestorAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
              return false;

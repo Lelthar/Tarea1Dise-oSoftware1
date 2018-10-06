@@ -47,9 +47,13 @@ public class FrServidor extends javax.swing.JFrame {
             if(dialogResult == JOptionPane.YES_OPTION){
               // Saving code here
               String nombreArchivo = fc.getSelectedFile().getName();
-              JOptionPane.showMessageDialog(this, "Se agregó la clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
+              
               //labelPath.setText( fc.getSelectedFile().getAbsolutePath() );
-              this.miServidor.getControlador().getAlgoritmos().agregarAlgoritmo(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName());
+              if(this.miServidor.getControlador().getAlgoritmos().agregarAlgoritmo(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
+                  JOptionPane.showMessageDialog(this, "Se agregó la clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
+              } else {
+                  JOptionPane.showMessageDialog(this, "La clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" ya existe. No se pudo agregar.");
+              } 
             } 
             
         } else {
