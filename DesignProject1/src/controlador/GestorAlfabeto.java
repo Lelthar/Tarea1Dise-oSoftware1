@@ -54,6 +54,7 @@ public class GestorAlfabeto implements iValidable {
         
         Alfabeto alfabeto = new Alfabeto(0,"Default", simbolos);
         alfabetos.add(alfabeto);
+        listaAlfabetos.add("Default");
     }
     
     

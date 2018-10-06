@@ -127,9 +127,6 @@ public class Servidor {
                     }
                 
                 case OBTENER_ALFABETOS:{
-                    //String elLogin=(String) objeto.getDatoEntrada();
-                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
                     log.setText(log+"\nSe obtuvieron los alfabetos");
                     objeto.setDatoSalida(controlador.obtenerAlfabetos());
                         break;
