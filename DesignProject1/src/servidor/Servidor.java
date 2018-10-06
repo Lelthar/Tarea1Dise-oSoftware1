@@ -153,4 +153,14 @@ public class Servidor {
             System.out.println("Problemas en la conversion del objeto recibido...");
         }
     }
+
+    public Controlador getControlador() {
+        return controlador;
+    }
+
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+    
+    
 }

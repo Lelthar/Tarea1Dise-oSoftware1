@@ -6,12 +6,15 @@
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/PalabraClave.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Binario.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/CodigoTelefonico.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/Alfabeto.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Vigenere.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/Algoritmo.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Transposicion.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorAlfabeto.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/Controlador.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/servidor/Servidor.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorAlgoritmos.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/vista/FrServidor.java</file>
         </group>
     </open-files>
 </project-private>

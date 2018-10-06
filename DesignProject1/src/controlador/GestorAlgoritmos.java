@@ -9,7 +9,11 @@ import comunes.DTOAlgoritmos;
 import java.io.File;
 import modelo.Algoritmo;
 import comunes.Resultado;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -101,6 +105,20 @@ public class GestorAlgoritmos {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public boolean agregarAlgoritmo(String path,String name) {
+        File source = new File(path);
+        File dest = new File("src/modelo/algoritmos/"+name);
+       
+        try {
+            Files.copy(source.toPath(), dest.toPath());
+             return true;
+        } catch (IOException ex) {
+            Logger.getLogger(GestorAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+        }
+       
     }
     
 }
