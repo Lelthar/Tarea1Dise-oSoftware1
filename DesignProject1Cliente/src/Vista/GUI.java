@@ -39,6 +39,7 @@ public class GUI extends javax.swing.JFrame {
         algoritmos = new ArrayList<>();
         Uigui = new UIgui();
         cargarAlgoritmosGUI();
+        cargarAlfabetosGUI();
     }
     
     /**
@@ -52,6 +53,16 @@ public class GUI extends javax.swing.JFrame {
         }
         
         this.lbAlgoritmoE.setModel(model);
+    }
+    
+    /**
+     * Metodo para cargar los alfabetos existentes
+     */
+    public void cargarAlfabetosGUI(){
+        ArrayList<String> algorimos = Uigui.obtenerAlfabetos();
+        for (int i=0;i<algorimos.size();i++) {
+           this.cbAlfabeto.addItem(algorimos.get(i));
+        }
     }
     
     /**
@@ -84,7 +95,7 @@ public class GUI extends javax.swing.JFrame {
        
        if(dtoRespuesta!=null){
             if(dtoRespuesta.getRespuesta().equals("OK")){
-                JOptionPane.showMessageDialog(this, elDto.toString());
+                procesarResultados(dtoRespuesta);
             }else{
                 JOptionPane.showMessageDialog(this, "No se puedo realizar operación.");
             }
@@ -410,7 +421,7 @@ public class GUI extends javax.swing.JFrame {
 
                 elDTO.setSalidasSeleccionadas(escritura);
                 
-                elDTO.setNumeroAlfabeto(0);
+                //elDTO.setNumeroAlfabeto(0);
                 
                 enviarPeticion(elDTO);
                 

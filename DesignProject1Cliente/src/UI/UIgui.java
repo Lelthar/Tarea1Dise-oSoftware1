@@ -34,6 +34,20 @@ public class UIgui {
         return null;
     }
     
+    public ArrayList<String> obtenerAlfabetos(){
+        try {
+            OBJComunicacion objeto = new OBJComunicacion(null, TipoAccion.OBTENER_ALFABETOS);
+            Conexion c = new Conexion();
+            
+            objeto = c.conecteServidor(objeto);
+            return (ArrayList<String>)objeto.getDatoSalida();
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UIgui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public DTOAlgoritmos procesarPeticion(DTOAlgoritmos elDTO){
         try {
             OBJComunicacion objeto = new OBJComunicacion(elDTO,TipoAccion.PETICION);
