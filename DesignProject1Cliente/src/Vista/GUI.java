@@ -421,7 +421,7 @@ public class GUI extends javax.swing.JFrame {
 
                 elDTO.setSalidasSeleccionadas(escritura);
                 
-                //elDTO.setNumeroAlfabeto(0);
+                elDTO.setNumeroAlfabeto(alfabeto);
                 
                 enviarPeticion(elDTO);
                 
