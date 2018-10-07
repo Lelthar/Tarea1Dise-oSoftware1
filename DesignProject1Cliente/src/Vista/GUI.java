@@ -113,10 +113,8 @@ public class GUI extends javax.swing.JFrame {
        if(dtoRespuesta!=null){
             this.Resultados.setText("");
             String texto="";
-            texto += "Resultado: \n";
-            texto += elDto.getResultado();
-            System.out.println(elDto.getLargo()+" : "+elDto.getNumeroAlfabeto()+" : "+
-                    elDto.getTipo()+ " : "+elDto.getResultado());
+            texto += "Frase Generada: \n";
+            texto += dtoRespuesta.getResultado();
             this.Resultados.setText(texto);
        }else{
            JOptionPane.showMessageDialog(this, "Respuesta null.");
