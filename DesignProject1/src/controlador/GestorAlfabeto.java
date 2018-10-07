@@ -169,11 +169,21 @@ public class GestorAlfabeto implements iValidable {
        
         try {
             if (!dest.exists()){
-                Files.copy(source.toPath(), dest.toPath());
-                this.listaAlfabetos.add(name.substring(0,name.indexOf('.')));
-                return true;
+                
+                FileReader fileReader = new FileReader(source);
+                BufferedReader br = new BufferedReader(fileReader);
+
+                String alfabeto =  br.readLine();
+                
+                if (validarRepetidos(alfabeto)) {
+                    Files.copy(source.toPath(), dest.toPath());
+                    this.listaAlfabetos.add(name.substring(0,name.indexOf('.')));
+                    return true;
+                } else {
+                    return false;
+                }
+ 
             }else {
-                System.out.println("Ya existe");
                 return false;
             }
             
@@ -194,6 +204,18 @@ public class GestorAlfabeto implements iValidable {
         } else {
             return false;
         } 
+    }
+    
+    public boolean validarRepetidos(String alfabeto) {
+        ArrayList<Character> lista_unicos = new ArrayList<>();
+        for(int i = 0; i < alfabeto.length(); i++) {
+            if (lista_unicos.contains(alfabeto.charAt(i))) {
+                return false;
+            }else {
+                lista_unicos.add(alfabeto.charAt(i));
+            }
+        }
+        return  true;
     }
         
         

@@ -75,7 +75,7 @@ public class FrServidor extends javax.swing.JFrame {
               if(this.miServidor.getControlador().getGestorAlfabeto().agregarAlfabeto(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
                   JOptionPane.showMessageDialog(this, "Se agregó el archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
               } else {
-                  JOptionPane.showMessageDialog(this, "El archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" ya existe. No se pudo agregar.");
+                  JOptionPane.showMessageDialog(this, "El archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" no se pudo agregar.\nPorque ya existe o contiene caracteres repetidos");
               } 
             } 
             
