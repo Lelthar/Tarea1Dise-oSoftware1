@@ -10,6 +10,7 @@
  */
 package vista;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JFileChooser;
@@ -256,11 +257,12 @@ public class FrServidor extends javax.swing.JFrame {
                || fc.getSelectedFile().getAbsolutePath().endsWith(".pdf")
                || fc.getSelectedFile().getAbsolutePath().endsWith(".xml"))){
             try {
-                Process p = Runtime.getRuntime()
-                           .exec("rundll32 url.dll,FileProtocolHandler "+fc.getSelectedFile().getAbsolutePath());
-                        p.waitFor();
+                
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(new File(fc.getSelectedFile().getAbsolutePath()));
                 System.out.println("Listo");
-            } catch (IOException | InterruptedException ex) {
+                
+            } catch (IOException ex) {
             }
         }
 
