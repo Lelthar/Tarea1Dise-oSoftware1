@@ -52,44 +52,44 @@ public class Servidor {
     }
    
 
-    public void inicialiceServidor(JTextArea log) throws InstantiationException, IllegalAccessException{
+    public void inicialiceServidor() throws InstantiationException, IllegalAccessException{
         try {
             servidor = new ServerSocket(PUERTO);
             while (true){
                 
-                log.setText(log.getText()+ "\nEsperando una solicitud de un cliente...");
+                //log.setText(log.getText()+ "\nEsperando una solicitud de un cliente...");
                 cliente = servidor.accept();  // acepta la solicitud de un cliente
 
-                log.setText(log.getText()+ "\nEstableciendo canal de escritura...");
+                //log.setText(log.getText()+ "\nEstableciendo canal de escritura...");
                 
                 // se establece DE PRIMERO  el canal de comunicacion-Escritura
                 conexionSalida =  cliente.getOutputStream();
                 flujoSalida = new ObjectOutputStream(conexionSalida);
 
-                log.setText(log.getText()+ "\nEstableciendo canal de lectura...");
+                //log.setText(log.getText()+ "\nEstableciendo canal de lectura...");
                 // se establece DE SEGUNDO el canal de comunicacion-Lectura
                 conexionEntrada = cliente.getInputStream();
                 flujoEntrada = new ObjectInputStream(conexionEntrada);
 
                 // atender la peticion...
-                log.setText(log.getText()+ "\nAtendiendo peticion...");
-                procesePeticion(log);
+                //log.setText(log.getText()+ "\nAtendiendo peticion...");
+                procesePeticion();
 
-                log.setText(log.getText()+ "\nDesconectando...");
-                log.setCaretPosition(log.getText().length());  // manda el log al final
+                //log.setText(log.getText()+ "\nDesconectando...");
+                //log.setCaretPosition(log.getText().length());  // manda el log al final
                 flujoEntrada.close();
-                log.setText(log.getText()+ "\nError 2");
+                //log.setText(log.getText()+ "\nError 2");
                 flujoSalida.close();
-                log.setText(log.getText()+ "\nError 3");
+                //log.setText(log.getText()+ "\nError 3");
                 cliente.close();
-                log.setText(log.getText()+ "\nError 4");
+                //log.setText(log.getText()+ "\nError 4");
             }
         } catch (IOException ex) {
             System.out.println("Problemas creando el servidor en el puerto "+ PUERTO);
         }
     }
 
-    private void procesePeticion(JTextArea log) throws InstantiationException, IllegalAccessException {
+    private void procesePeticion() throws InstantiationException, IllegalAccessException {
         try {
             OBJComunicacion objeto = (OBJComunicacion) flujoEntrada.readObject();
             if (null != objeto.getAccion()) // detectar lo que le enviaron...
@@ -99,23 +99,23 @@ public class Servidor {
                     //log.setText(log.getText()+ "\nAtendiendo peticion REGISTRAR USUARIO.."+ elLogin);
                     //objeto.setDatoSalida(adm.registrar(elLogin)); aqui va el dto
                     DTOAlgoritmos consulta = (DTOAlgoritmos) objeto.getDatoEntrada();
-                    log.setText("Entró a la petición");
+                    //log.setText("Entró a la petición");
                     consulta = controlador.procesarPeticion(consulta);
-                    log.setText("");
+                    //log.setText("");
                     System.out.println("Error1");
                     if ( consulta.getRespuesta() != null) {
-                        log.setText(log.getText()+ "\nSe realizó la peticion "+consulta.getResultadoAlgoritmos().get(0));
+                        //log.setText(log.getText()+ "\nSe realizó la peticion "+consulta.getResultadoAlgoritmos().get(0));
                     } else {
-                        log.setText(log.getText()+ "\nOcurrió un error realizando la peticion");
+                        //log.setText(log.getText()+ "\nOcurrió un error realizando la peticion");
                     }  
                     objeto.setDatoSalida(consulta);
-                    log.setText(log.getText()+ "\nError 1");
+                    //log.setText(log.getText()+ "\nError 1");
                         break;
                     }
              
                 case OBTENER_ALGORITMOS:{
                     //String elLogin=(String) objeto.getDatoEntrada();
-                    log.setText(log+"\nSe obtuvieron los algoritmos");
+                    //log.setText(log+"\nSe obtuvieron los algoritmos");
                     objeto.setDatoSalida(controlador.getAlgoritmos().getListaTipos());
                         break;
                     }
@@ -127,8 +127,8 @@ public class Servidor {
                     }
                 
                 case OBTENER_ALFABETOS:{
-                    log.setText(log+"\nSe obtuvieron los alfabetos");
-                    objeto.setDatoSalida(controlador.obtenerAlfabetos());
+                    //log.setText(log+"\nSe obtuvieron los alfabetos");
+                    objeto.setDatoSalida(controlador.getGestorAlfabeto().getListaAlfabetos());
                         break;
                     }
                 case GENERAR_FRASE:{
@@ -138,13 +138,13 @@ public class Servidor {
                         break;
                     }
                 default:
-                    log.setText("No existe esa petición en el servidor");
+                    //log.setText("No existe esa petición en el servidor");
                     break;
             }
 
             flujoSalida.writeObject(objeto);
         } catch (IOException ex) {
-            log.setText(log.getText()+ "\n"+ex.toString());
+            //log.setText(log.getText()+ "\n"+ex.toString());
             System.out.println("Problemas leyendo o escribiendo en el flujo entrada/salida");
         } catch (ClassNotFoundException ex) {
             System.out.println("Problemas en la conversion del objeto recibido...");

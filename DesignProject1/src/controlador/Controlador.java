@@ -119,7 +119,6 @@ public class Controlador implements iValidable  {
     }
     
     public ArrayList<String> obtenerAlfabetos(){
-        getGestorAlfabeto().actualizarAlfabetos();
         return getGestorAlfabeto().getListaAlfabetos();
     }
         

@@ -11,8 +11,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import modelo.Alfabeto;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import modelo.Algoritmo;
 
@@ -90,7 +93,7 @@ public class GestorAlfabeto implements iValidable {
         listaAlfabetos = new ArrayList<>();
         
         this.cargarDefault();
-        this.cargarAlfabetos("Alfabetos");
+        this.cargarAlfabetos("alfabetos");
     }
         
     
@@ -115,7 +118,7 @@ public class GestorAlfabeto implements iValidable {
                 String[] files = directory.list(); 
                 File fileAlfabeto;
                 String pathFileAlfabeto ;
-                String pathCarpetaAlfabeto = "src/Alfabetos/" ;
+                String pathCarpetaAlfabeto = "src/alfabetos/" ;
                 ArrayList<String> listaPathsArchivos = new ArrayList<String>();
 
                 for(int i=0; i<files.length; i++) { 
@@ -138,7 +141,6 @@ public class GestorAlfabeto implements iValidable {
                     Alfabeto alfabeto = new Alfabeto(i,nombreAlfabeto, simbolosAlfabeto);
                     alfabetos.add(alfabeto);
                     listaAlfabetos.add(nombreAlfabeto);
-                  
               }
               
               
@@ -159,6 +161,39 @@ public class GestorAlfabeto implements iValidable {
 
     public void setListaAlfabetos(ArrayList<String> listaAlfabetos) {
         this.listaAlfabetos = listaAlfabetos;
+    }
+    
+    public boolean agregarAlfabeto(String path,String name) {
+        File source = new File(path);
+        File dest = new File("src/alfabetos/"+name);
+       
+        try {
+            if (!dest.exists()){
+                Files.copy(source.toPath(), dest.toPath());
+                this.listaAlfabetos.add(name.substring(0,name.indexOf('.')));
+                return true;
+            }else {
+                System.out.println("Ya existe");
+                return false;
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(GestorAlgoritmos.class.getName()).log(Level.SEVERE, null, ex);
+             return false;
+        }
+       
+    }
+    
+    public boolean eliminarAlfabeto(String alfabeto) {
+        String path = "src/alfabetos/";
+        File source = new File(path+alfabeto+".txt");
+        if (source.exists()) {
+            source.delete();
+            this.listaAlfabetos.remove(alfabeto);
+            return true;
+        } else {
+            return false;
+        } 
     }
         
         

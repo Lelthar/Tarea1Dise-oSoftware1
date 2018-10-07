@@ -13,6 +13,8 @@ package vista;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -29,9 +31,10 @@ public class FrServidor extends javax.swing.JFrame {
     /** Creates new form FrServidor */
     public FrServidor() {
         initComponents();
+        
     }
     
-    public void agregarArchivo(){
+    public void agregarArchivoAlgoritmo(){
         JFileChooser fc = new JFileChooser();
         int codigo = fc.showOpenDialog(this);
 
@@ -55,6 +58,98 @@ public class FrServidor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Tiene que agregar una clase.");
         }
     }
+    
+    public void agregarArchivoAlfabeto(){
+        JFileChooser fc = new JFileChooser();
+        int codigo = fc.showOpenDialog(this);
+
+        if (codigo == JFileChooser.APPROVE_OPTION && fc.getSelectedFile().getAbsolutePath().endsWith(".txt")){
+            
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog (null, "¿Seguro que desea agregar ese archivo?","Warning",dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION){
+              // Saving code here
+              String nombreArchivo = fc.getSelectedFile().getName();
+              
+              //labelPath.setText( fc.getSelectedFile().getAbsolutePath() );
+              if(this.miServidor.getControlador().getGestorAlfabeto().agregarAlfabeto(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
+                  JOptionPane.showMessageDialog(this, "Se agregó el archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
+              } else {
+                  JOptionPane.showMessageDialog(this, "El archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" ya existe. No se pudo agregar.");
+              } 
+            } 
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Tiene que agregar un archivo .txt .");
+        }
+    }
+    
+    public void abrirBitacora() {
+        String dir = new File (".").getAbsolutePath ();
+        JFileChooser fc = new JFileChooser(dir+"/resultados");
+        fc.setDialogTitle("Selección de archivo de bitácora");
+        int codigo = fc.showOpenDialog(this);
+        if (codigo == JFileChooser.APPROVE_OPTION && (fc.getSelectedFile().getAbsolutePath().endsWith(".txt")
+               || fc.getSelectedFile().getAbsolutePath().endsWith(".pdf")
+               || fc.getSelectedFile().getAbsolutePath().endsWith(".xml"))){
+            try {
+                
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(new File(fc.getSelectedFile().getAbsolutePath()));
+                
+            } catch (IOException ex) {
+            }
+        }
+    }
+    
+    public void cargarAlgoritmos(){
+        DefaultListModel<String> model = new DefaultListModel<>(); 
+        ArrayList<String> algorimos = miServidor.getControlador().getAlgoritmos().getListaTipos(); 
+        for (String algoritmo : algorimos) {
+           model.addElement(algoritmo);
+        }
+        
+        this.listaAlgoritmos.setModel(model);
+    }
+    
+    public void cargarAlfabetos(){
+        DefaultListModel<String> model = new DefaultListModel<>(); 
+        ArrayList<String> alfabetos = miServidor.getControlador().obtenerAlfabetos(); 
+        for (String alfabeto : alfabetos) {
+           model.addElement(alfabeto);
+        }
+        
+        this.listaAlfabetos.setModel(model);
+    }
+    
+    public void eliminarAlgoritmo() {
+        String tipo = this.listaAlgoritmos.getSelectedValue();
+        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "¿Seguro que desea eliminar ese algoritmo?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            if(miServidor.getControlador().getAlgoritmos().eliminarAlgoritmo(tipo)) {
+                JOptionPane.showMessageDialog(this, "Se eliminó el algoritmo "+tipo);
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el algoritmo "+tipo);
+            }
+        }
+    }
+    
+    public void eliminarAlfabeto() {
+        String tipo = this.listaAlfabetos.getSelectedValue();
+        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "¿Seguro que desea eliminar ese alfabeto?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            if(miServidor.getControlador().getGestorAlfabeto().eliminarAlfabeto(tipo)) {
+                JOptionPane.showMessageDialog(this, "Se eliminó el alfabeto "+tipo); 
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el alfabeto "+tipo);
+            }
+        }
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -71,13 +166,13 @@ public class FrServidor extends javax.swing.JFrame {
         jButton_agregarAlfabeto = new javax.swing.JButton();
         jButton_eliminiarAlfabeto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaAlfabetos = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButton_agregarAlgorimo = new javax.swing.JButton();
         jButton_eliminarAlgoritmo = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        listaAlgoritmos = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton_verBitacora = new javax.swing.JButton();
@@ -103,8 +198,18 @@ public class FrServidor extends javax.swing.JFrame {
 
         jButton_eliminiarAlfabeto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_eliminiarAlfabeto.setText("Eliminar Alfabeto");
+        jButton_eliminiarAlfabeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminiarAlfabetoActionPerformed(evt);
+            }
+        });
 
-        jScrollPane1.setViewportView(jList1);
+        listaAlfabetos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaAlfabetosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaAlfabetos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,11 +248,21 @@ public class FrServidor extends javax.swing.JFrame {
 
         jButton_agregarAlgorimo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_agregarAlgorimo.setText("Agregar Algoritmo");
+        jButton_agregarAlgorimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_agregarAlgorimoActionPerformed(evt);
+            }
+        });
 
         jButton_eliminarAlgoritmo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_eliminarAlgoritmo.setText("Eliminar Algoritmo");
+        jButton_eliminarAlgoritmo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminarAlgoritmoActionPerformed(evt);
+            }
+        });
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listaAlgoritmos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -244,29 +359,37 @@ public class FrServidor extends javax.swing.JFrame {
 
     private void jButton_agregarAlfabetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregarAlfabetoActionPerformed
         // TODO add your handling code here:
-        agregarArchivo();
+        agregarArchivoAlfabeto();
+        cargarAlfabetos();
     }//GEN-LAST:event_jButton_agregarAlfabetoActionPerformed
 
     private void jButton_verBitacoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_verBitacoraActionPerformed
         // TODO add your handling code here:
-        String dir = new File (".").getAbsolutePath ();
-        JFileChooser fc = new JFileChooser(dir+"/resultados");
-        fc.setDialogTitle("Selección de archivo de bitácora");
-        int codigo = fc.showOpenDialog(this);
-        if (codigo == JFileChooser.APPROVE_OPTION && (fc.getSelectedFile().getAbsolutePath().endsWith(".txt")
-               || fc.getSelectedFile().getAbsolutePath().endsWith(".pdf")
-               || fc.getSelectedFile().getAbsolutePath().endsWith(".xml"))){
-            try {
-                
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(new File(fc.getSelectedFile().getAbsolutePath()));
-                System.out.println("Listo");
-                
-            } catch (IOException ex) {
-            }
-        }
-
+       abrirBitacora();
     }//GEN-LAST:event_jButton_verBitacoraActionPerformed
+
+    private void jButton_agregarAlgorimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_agregarAlgorimoActionPerformed
+        // TODO add your handling code here:
+        agregarArchivoAlgoritmo();
+        cargarAlgoritmos();
+    }//GEN-LAST:event_jButton_agregarAlgorimoActionPerformed
+
+    private void jButton_eliminiarAlfabetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminiarAlfabetoActionPerformed
+        // TODO add your handling code here:
+        eliminarAlfabeto();
+        cargarAlfabetos();
+    }//GEN-LAST:event_jButton_eliminiarAlfabetoActionPerformed
+
+    private void jButton_eliminarAlgoritmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarAlgoritmoActionPerformed
+        // TODO add your handling code here:
+        eliminarAlgoritmo();
+        cargarAlgoritmos();
+    }//GEN-LAST:event_jButton_eliminarAlgoritmoActionPerformed
+
+    private void listaAlfabetosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaAlfabetosMouseClicked
+        // TODO add your handling code here:
+ 
+    }//GEN-LAST:event_listaAlfabetosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -308,6 +431,10 @@ public class FrServidor extends javax.swing.JFrame {
         fr.setVisible(true);
         
         fr.miServidor = new Servidor();
+        fr.cargarAlgoritmos();
+        fr.cargarAlfabetos();
+        fr.miServidor.inicialiceServidor();
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_agregarAlfabeto;
@@ -318,13 +445,13 @@ public class FrServidor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JList<String> listaAlfabetos;
+    private javax.swing.JList<String> listaAlgoritmos;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,14 @@ public class GestorAlgoritmos {
     private ArrayList<String> listaTipos;
     
     public GestorAlgoritmos() {
-        listaTipos = getClassesPackage("modelo.algoritmos");
+        actualizarAlgoritmos();
+    }
+    
+    public void actualizarAlgoritmos() {
+        if ( this.listaTipos != null ) {
+            this.listaTipos.clear();
+        }
+        this.listaTipos = getClassesPackage("modelo.algoritmos");
     }
     
     /**
@@ -114,6 +121,7 @@ public class GestorAlgoritmos {
         try {
             if (!dest.exists()){
                 Files.copy(source.toPath(), dest.toPath());
+                this.listaTipos.add(name.substring(0,name.indexOf('.')));
                 return true;
             }else {
                 System.out.println("Ya existe");
@@ -125,6 +133,18 @@ public class GestorAlgoritmos {
              return false;
         }
        
+    }
+    
+    public boolean eliminarAlgoritmo(String algoritmo) {
+        String path = "src/modelo/algoritmos/";
+        File source = new File(path+algoritmo+".java");
+        if (source.exists()) {
+            source.delete();
+            this.listaTipos.remove(algoritmo);
+            return true;
+        } else {
+            return false;
+        } 
     }
     
 }
