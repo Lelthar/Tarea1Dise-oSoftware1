@@ -21,11 +21,13 @@ public class Controlador implements iValidable  {
     private GestorAlfabeto gestorAlfabeto;
     private GestorAlgoritmos gestorAlgoritmos;
     private GestorEscritor gestorEscritor;
+    private GestorFrase gestorFrase;
 
     public Controlador() {
         gestorAlgoritmos = new GestorAlgoritmos();
         gestorAlfabeto = new GestorAlfabeto();
         gestorEscritor = new GestorEscritor();
+        gestorFrase = new GestorFrase();
     }
     
     /**
@@ -121,5 +123,14 @@ public class Controlador implements iValidable  {
     public ArrayList<String> obtenerAlfabetos(){
         return getGestorAlfabeto().getListaAlfabetos();
     }
-        
+
+    public GestorFrase getGestorFrase() {
+        return gestorFrase;
+    }
+
+    public void setGestorFrase(GestorFrase gestorFrase) {
+        this.gestorFrase = gestorFrase;
+    }
+    
+    
 }

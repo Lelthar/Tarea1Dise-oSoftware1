@@ -10,10 +10,13 @@
  */
 package vista;
 
+import controlador.GestorFrase;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -103,6 +106,18 @@ public class FrServidor extends javax.swing.JFrame {
     }
     
     public void cargarAlgoritmos(){
+        
+        /*try {
+            String frase = miServidor.getControlador().getGestorFrase().generarFrase(10,"Tipo2FraseBuilder",miServidor.getControlador().getGestorAlfabeto().getAlfabetos().get(0).getSimbolos());
+            System.out.println(frase);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.toString());
+        } catch (InstantiationException ex) {
+            System.out.println(ex.toString());
+        } catch (IllegalAccessException ex) {
+           System.out.println(ex.toString());
+        }*/
+        
         DefaultListModel<String> model = new DefaultListModel<>(); 
         ArrayList<String> algorimos = miServidor.getControlador().getAlgoritmos().getListaTipos(); 
         for (String algoritmo : algorimos) {
