@@ -7,6 +7,7 @@ package UI;
 
 import Conexion.Conexion;
 import comunes.DTOAlgoritmos;
+import comunes.DTOGenerarFrase;
 import comunes.OBJComunicacion;
 import comunes.TipoAccion;
 import java.net.UnknownHostException;
@@ -55,6 +56,20 @@ public class UIgui {
             
             objeto = conexion.conecteServidor(objeto);
             return (DTOAlgoritmos) objeto.getDatoSalida(); 
+            
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UIgui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public DTOGenerarFrase procesarGenerarFrase(DTOGenerarFrase elDTO){
+        try {
+            OBJComunicacion objeto = new OBJComunicacion(elDTO,TipoAccion.GENERAR_FRASE);
+            Conexion conexion = new Conexion();
+            
+            objeto = conexion.conecteServidor(objeto);
+            return (DTOGenerarFrase) objeto.getDatoSalida(); 
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(UIgui.class.getName()).log(Level.SEVERE, null, ex);

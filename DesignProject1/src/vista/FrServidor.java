@@ -107,17 +107,6 @@ public class FrServidor extends javax.swing.JFrame {
     
     public void cargarAlgoritmos(){
         
-        /*try {
-            String frase = miServidor.getControlador().getGestorFrase().generarFrase(10,"Tipo2FraseBuilder",miServidor.getControlador().getGestorAlfabeto().getAlfabetos().get(0).getSimbolos());
-            System.out.println(frase);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.toString());
-        } catch (InstantiationException ex) {
-            System.out.println(ex.toString());
-        } catch (IllegalAccessException ex) {
-           System.out.println(ex.toString());
-        }*/
-        
         DefaultListModel<String> model = new DefaultListModel<>(); 
         ArrayList<String> algorimos = miServidor.getControlador().getAlgoritmos().getListaTipos(); 
         for (String algoritmo : algorimos) {
