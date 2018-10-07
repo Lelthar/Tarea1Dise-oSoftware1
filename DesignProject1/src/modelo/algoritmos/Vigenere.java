@@ -27,8 +27,8 @@ public class Vigenere extends Algoritmo{
     public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         String mensajeProcesar = (String) mensaje.get(0);
-        int primerCifra = ((int ) mensaje.get(1)) / 10 ;
-        int segundaCifra = ((int ) mensaje.get(1)) % 10;
+        int primerCifra = (Integer.parseInt((String) mensaje.get(1))) / 10 ;
+        int segundaCifra = (Integer.parseInt((String) mensaje.get(1))) % 10;
         
         String resultado = "";
         
@@ -49,8 +49,8 @@ public class Vigenere extends Algoritmo{
     public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
         
         String mensajeProcesar = (String) mensaje.get(0);
-        int primerCifra = ((int ) mensaje.get(1)) / 10 ;
-        int segundaCifra = ((int ) mensaje.get(1)) % 10;
+        int primerCifra = (Integer.parseInt((String) mensaje.get(1))) / 10 ;
+        int segundaCifra = (Integer.parseInt((String) mensaje.get(1))) % 10;
         String resultado = "";
         int valorReduccion;
         
