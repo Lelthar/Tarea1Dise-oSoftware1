@@ -26,10 +26,11 @@ public class GestorFrase {
     
     
     
-    public String generarFrase(int largo, String tipo,ArrayList<Character> alfabeto) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public String generarFrase(int largo, int tipoNumero,ArrayList<Character> alfabeto) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
        
+        String tipoFrase = this.listaTipos.get(tipoNumero);
         String paquete = FraseBuilder.class.getPackage().getName()+".frases_builder";
-        String instanciaFraseBuilder = paquete+"."+tipo;
+        String instanciaFraseBuilder = paquete+"."+tipoFrase;
         FraseBuilder fraseBuilder = (FraseBuilder) Class.forName(instanciaFraseBuilder).newInstance();
         
         generadorFrase.setFraseBuilder(fraseBuilder);

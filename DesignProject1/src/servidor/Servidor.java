@@ -6,6 +6,7 @@
 package servidor;
 
 import comunes.DTOAlgoritmos;
+import comunes.DTOGenerarFrase;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -131,10 +132,12 @@ public class Servidor {
                     objeto.setDatoSalida(controlador.getGestorAlfabeto().getListaAlfabetos());
                         break;
                     }
-                case GENERAR_FRASE:{
-                    //String elLogin=(String) objeto.getDatoEntrada();
-                    //log.setText(log.getText()+ "\nAtendiendo peticion DESACTIVAR USUARIO.."+ elLogin);
-                    //objeto.setDatoSalida(adm.desactivar(elLogin)); aqui va el dto
+                case GENERAR_FRASE:{   
+                    DTOGenerarFrase consulta = (DTOGenerarFrase) objeto.getDatoEntrada();
+                    ArrayList<Character> alfabetoSeleccionado = controlador.getGestorAlfabeto().getAlfabetos().get(consulta.getNumeroAlfabeto()).getSimbolos();
+                    String frase = this.controlador.getGestorFrase().generarFrase(consulta.getLargo(),consulta.getTipo(),alfabetoSeleccionado);
+                    consulta.setResultado(frase);
+                    objeto.setDatoSalida(consulta);
                         break;
                     }
                 default:
