@@ -98,7 +98,7 @@ public class GUI extends javax.swing.JFrame {
             if(dtoRespuesta.getRespuesta().equals("OK")){
                 procesarResultados(dtoRespuesta);
             }else{
-                JOptionPane.showMessageDialog(this, "No se puedo realizar operación.");
+                JOptionPane.showMessageDialog(this, "No se puedo realizar operación."+dtoRespuesta.getRespuesta());
             }
        }else{
            JOptionPane.showMessageDialog(this, "Respuesta null.");
