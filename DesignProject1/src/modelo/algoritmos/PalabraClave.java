@@ -36,7 +36,8 @@ public class PalabraClave extends Algoritmo{
     
     
     
-    public String codificarPalabra(String palabraACodificar, String palabraClave, ArrayList<Character> alfabeto){
+    public String codificarPalabra(String palabraACodificar, String palabraClave, 
+            ArrayList<Character> alfabeto){
         
         String palabraCodificada = "";
         
@@ -65,9 +66,7 @@ public class PalabraClave extends Algoritmo{
                 letraPalabraClave = palabraClave.charAt(posClave);
                 
             }
-            
-            
-            
+
             valorLetraCodificar = alfabeto.indexOf(letraACodificar) + 1;
             valorLetraClave = alfabeto.indexOf(letraPalabraClave) + 1;
             
@@ -77,16 +76,65 @@ public class PalabraClave extends Algoritmo{
                 valorTotal = valorTotal - largoAlfabeto;
             }
             
-            System.out.println("LetraAC: " +letraACodificar + " LetraClave: " + letraPalabraClave + valorLetraCodificar + " " + valorLetraClave + " " + valorTotal  );
+           
             nuevaLetra = alfabeto.get(valorTotal - 1);
             palabraCodificada += nuevaLetra;
             posClave++;
-            
-            
-            
+ 
         }
         
         return palabraCodificada;
+        
+    }
+    
+    public String decodificarPalabra(String palabraADecodificar, String palabraClave,
+            ArrayList<Character> alfabeto){
+        
+        String palabraDecodificada = "";
+        
+        int valorLetraDecodificar;
+        int valorLetraClave;
+        int valorTotal ;
+        int largoAlfabeto = alfabeto.size();
+        
+        char letraADecodificar;
+        char letraPalabraClave;
+        
+        char nuevaLetra;
+        int posClave = 0 ;
+
+        
+        for(int i = 0; i< palabraADecodificar.length();i++){
+            
+            letraADecodificar = palabraADecodificar.charAt(i);
+            
+            if(posClave < palabraClave.length()){
+                letraPalabraClave = palabraClave.charAt(posClave);
+                
+            }
+            else{
+                posClave = 0;
+                letraPalabraClave = palabraClave.charAt(posClave);
+                
+            }
+
+            valorLetraDecodificar = alfabeto.indexOf(letraADecodificar) + 1;
+            valorLetraClave = alfabeto.indexOf(letraPalabraClave) + 1;
+            
+            valorTotal = valorLetraDecodificar - valorLetraClave;
+
+            if(valorTotal < 0 ){
+                valorTotal = valorTotal + largoAlfabeto;
+            }
+
+            nuevaLetra = alfabeto.get(valorTotal - 1);
+            palabraDecodificada += nuevaLetra;
+            posClave++;
+ 
+        }
+        
+        return palabraDecodificada;
+
         
     }
     
@@ -110,10 +158,10 @@ public class PalabraClave extends Algoritmo{
             }
             
             else{
-                
-                palabraACodificar = "";
+
                 palabraCodificada = this.codificarPalabra(palabraACodificar, palabraClave, alfabeto);
-                mensajeCodificado += palabraCodificada;
+                mensajeCodificado += palabraCodificada + " ";
+                palabraACodificar = "";
                 System.out.println("Palabra codificada: " + palabraCodificada);
            
             }
@@ -134,8 +182,10 @@ public class PalabraClave extends Algoritmo{
         String mensajeDecodificado = "";
         
         String palabraADecodificar = "";
-        String palabraDecodificada;
+        String palabraDecodificada = "";
         char caracter;
+        
+        System.out.println("Palabra a decodificar: " + mensajeADecodificar);
         
         for(int i = 0 ; i < mensajeADecodificar.length(); i++){
             
@@ -147,17 +197,21 @@ public class PalabraClave extends Algoritmo{
             
             else{
                 
-                palabraDecodificada = this.codificarPalabra(palabraACodificar, palabraClave, alfabeto);
-                System.out.println("Palabra codificada: " + palabraCodificada);
+                palabraDecodificada = decodificarPalabra(palabraADecodificar, palabraClave, alfabeto);
+                mensajeDecodificado += palabraDecodificada + " ";
+                palabraADecodificar = "";
+                System.out.println("Palabra Decodificada: " + palabraDecodificada);
+
            
             }
    
         }
-        palabraCodificada = this.codificarPalabra(palabraACodificar, palabraClave, alfabeto);
         
-        
-  
-        return palabraCodificada;
+        System.out.println("");
+        palabraDecodificada = this.decodificarPalabra(palabraADecodificar, palabraClave, alfabeto); 
+        mensajeDecodificado += palabraDecodificada;
+        System.out.println("Mensaje decodificado: " + mensajeDecodificado);
+        return mensajeDecodificado;
         
         
     }
