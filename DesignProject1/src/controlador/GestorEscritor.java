@@ -31,8 +31,6 @@ public class GestorEscritor {
         this.listaTipos = listaTipos;
     }
     
-    
-    
     public void escribirSalida(DTOAlgoritmos dtoAlgoritmos) throws InstantiationException, ClassNotFoundException, IllegalAccessException{
         String paquete;
         String instanciaEscritor;

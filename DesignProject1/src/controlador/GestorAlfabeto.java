@@ -41,7 +41,6 @@ public class GestorAlfabeto implements iValidable {
     @Override
     public boolean Validar(DTOAlgoritmos DtoAlgoritmos) {
         return false;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void cargarDefault(){

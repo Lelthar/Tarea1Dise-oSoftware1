@@ -25,7 +25,7 @@ import servidor.Servidor;
 
 /**
  *
- * @author M-01
+ * @author gerald
  */
 public class FrServidor extends javax.swing.JFrame {
     
@@ -46,15 +46,15 @@ public class FrServidor extends javax.swing.JFrame {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog (null, "¿Seguro que desea agregar ese algoritmo?","Warning",dialogButton);
             if(dialogResult == JOptionPane.YES_OPTION){
-              // Saving code here
-              String nombreArchivo = fc.getSelectedFile().getName();
-              
-              //labelPath.setText( fc.getSelectedFile().getAbsolutePath() );
-              if(this.miServidor.getControlador().getAlgoritmos().agregarAlgoritmo(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
-                  JOptionPane.showMessageDialog(this, "Se agregó la clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
-              } else {
-                  JOptionPane.showMessageDialog(this, "La clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" ya existe. No se pudo agregar.");
-              } 
+          
+                String nombreArchivo = fc.getSelectedFile().getName();
+
+
+                if(this.miServidor.getControlador().getAlgoritmos().agregarAlgoritmo(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
+                    JOptionPane.showMessageDialog(this, "Se agregó la clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
+                } else {
+                    JOptionPane.showMessageDialog(this, "La clase "+nombreArchivo.substring(0,nombreArchivo.indexOf('.'))+" ya existe. No se pudo agregar.");
+                } 
             } 
             
         } else {
@@ -71,10 +71,9 @@ public class FrServidor extends javax.swing.JFrame {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog (null, "¿Seguro que desea agregar ese archivo?","Warning",dialogButton);
             if(dialogResult == JOptionPane.YES_OPTION){
-              // Saving code here
+              
               String nombreArchivo = fc.getSelectedFile().getName();
               
-              //labelPath.setText( fc.getSelectedFile().getAbsolutePath() );
               if(this.miServidor.getControlador().getGestorAlfabeto().agregarAlfabeto(fc.getSelectedFile().getAbsolutePath(), fc.getSelectedFile().getName())){
                   JOptionPane.showMessageDialog(this, "Se agregó el archivo "+nombreArchivo.substring(0,nombreArchivo.indexOf('.')));
               } else {

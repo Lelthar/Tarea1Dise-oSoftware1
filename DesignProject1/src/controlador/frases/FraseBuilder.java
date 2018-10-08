@@ -16,9 +16,7 @@ public abstract class FraseBuilder {
     protected Frase frase;
 
     public FraseBuilder() {
-    }
-    
-    
+    } 
     
     public Frase getFrase() {
         return frase;

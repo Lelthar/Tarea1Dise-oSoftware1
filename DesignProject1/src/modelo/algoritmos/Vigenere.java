@@ -19,9 +19,7 @@ public class Vigenere extends Algoritmo{
     }
 
     public Vigenere() {
-    }
-    
-    
+    } 
     
     @Override
     public String Codificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){
@@ -43,7 +41,6 @@ public class Vigenere extends Algoritmo{
         }
         return resultado;
     }
-    
     
     @Override
     public String Decodificar(ArrayList<Object> mensaje, ArrayList<Character> alfabeto){

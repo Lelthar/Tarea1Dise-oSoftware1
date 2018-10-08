@@ -58,32 +58,23 @@ public class Servidor {
             servidor = new ServerSocket(PUERTO);
             while (true){
                 
-                //log.setText(log.getText()+ "\nEsperando una solicitud de un cliente...");
                 cliente = servidor.accept();  // acepta la solicitud de un cliente
-
-                //log.setText(log.getText()+ "\nEstableciendo canal de escritura...");
                 
                 // se establece DE PRIMERO  el canal de comunicacion-Escritura
                 conexionSalida =  cliente.getOutputStream();
                 flujoSalida = new ObjectOutputStream(conexionSalida);
 
-                //log.setText(log.getText()+ "\nEstableciendo canal de lectura...");
                 // se establece DE SEGUNDO el canal de comunicacion-Lectura
                 conexionEntrada = cliente.getInputStream();
                 flujoEntrada = new ObjectInputStream(conexionEntrada);
 
-                // atender la peticion...
-                //log.setText(log.getText()+ "\nAtendiendo peticion...");
+                // atender la peticion... 
                 procesePeticion();
-
-                //log.setText(log.getText()+ "\nDesconectando...");
-                //log.setCaretPosition(log.getText().length());  // manda el log al final
+              
                 flujoEntrada.close();
-                //log.setText(log.getText()+ "\nError 2");
                 flujoSalida.close();
-                //log.setText(log.getText()+ "\nError 3");
                 cliente.close();
-                //log.setText(log.getText()+ "\nError 4");
+                
             }
         } catch (IOException ex) {
             System.out.println("Problemas creando el servidor en el puerto "+ PUERTO);

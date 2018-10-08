@@ -24,8 +24,6 @@ public class GestorFrase {
         generadorFrase = new GeneradorFrase();
     }
     
-    
-    
     public String generarFrase(int largo, int tipoNumero,ArrayList<Character> alfabeto) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
        
         String tipoFrase = this.listaTipos.get(tipoNumero);
