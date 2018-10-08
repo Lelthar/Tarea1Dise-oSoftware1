@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package modelo.escritor;
 
 import comunes.DTOAlgoritmos;
 import java.io.BufferedWriter;
@@ -14,6 +14,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.iEscritor;
 
 /**
  *
