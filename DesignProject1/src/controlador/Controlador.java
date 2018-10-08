@@ -87,12 +87,13 @@ public class Controlador implements iValidable  {
     public boolean Validar(DTOAlgoritmos DtoAlgoritmos) {
         
         String frase = (String) DtoAlgoritmos.getDatosEntrada().get(0);
-        
-        for (int i = 0; i < frase.length(); i++) {
-            if ( !this.alfabetoActual.getSimbolos().contains(frase.charAt(i)) && frase.charAt(i) != ' ' )
-                return false;
+        if (DtoAlgoritmos.isModoAlgoritmo()) {
+            for (int i = 0; i < frase.length(); i++) {
+                if ( !this.alfabetoActual.getSimbolos().contains(frase.charAt(i)) && frase.charAt(i) != ' ' )
+                    return false;
+            }
         }
-        
+
         return true;
     }
 

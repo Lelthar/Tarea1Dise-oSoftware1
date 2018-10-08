@@ -1,0 +1,30 @@
+Fecha y Hora: 07-10-2018 19:28:27
+Frase original: hola mundo
+Nombre algoritmo: Transposicion
+Operación: Codificación
+Resultado: aloh odnum
+
+Fecha y Hora: 07-10-2018 19:28:27
+Frase original: hola mundo
+Nombre algoritmo: Vigenere
+Operación: Codificación
+Resultado: jrnd pwqfr
+
+Fecha y Hora: 07-10-2018 19:28:27
+Frase original: hola mundo
+Nombre algoritmo: Binario
+Operación: Codificación
+Resultado:  00111 01110 01011 00000* 01100 10100 01101 00011 01110
+
+Fecha y Hora: 07-10-2018 19:28:27
+Frase original: hola mundo
+Nombre algoritmo: CodigoTelefonico
+Operación: Codificación
+Resultado: 22 43 33 01 *41 63 42 11 43 
+
+Fecha y Hora: 07-10-2018 19:28:27
+Frase original: hola mundo
+Nombre algoritmo: PalabraClave
+Operación: Codificación
+Resultado: bpzu gvbxp
+

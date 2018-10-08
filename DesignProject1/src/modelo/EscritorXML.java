@@ -31,11 +31,18 @@ public class EscritorXML implements iEscritor {
         //Obtiene la fecha actual en el sistema
         Writer writer_xml;
         String encabezado = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-        String inicioXML = "<Resultado>\n";
-        String finalXML = "</Resultado>";
-        String nombre = "Nombre algoritmo: ";
-        String tipoOperacion = "Operación: ";
-        String resultadoOperacion = "Resultado: ";
+        String inicioXML = "<ResultadoTotal>\n";
+        String finalXML = "</ResultadoTotal>";
+        String fechaYHoraIn = "<FechaYHora>";
+        String fechaYHoraFin = "</FechaYHora>";
+        String fraseOriginalIn = "<FraseOriginal>";
+        String fraseOriginalFin = "</FraseOriginal>";
+        String nombreIn = "<NombreAlgoritmo>";
+        String nombreFin = "</NombreAlgoritmo>";
+        String tipoOperacionIn = "<Operación>";
+        String tipoOperacionFin = "</Operación>";
+        String resultadoOperacionIn = "<Resultado>";
+        String resultadoOperacionFin = "</Resultado>";
         String ubicacion = "resultados/";
         
         try {
@@ -45,10 +52,12 @@ public class EscritorXML implements iEscritor {
             writer_xml.write(inicioXML);
             
             for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
-               writer_xml.write(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n");
-               writer_xml.write(tipoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getTipoOperacion()+"\n");
-               writer_xml.write(resultadoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getResultadoAlgoritmo()+"\n");
-               writer_xml.write("\n");
+                writer_xml.write(fechaYHoraIn+DtoAlgoritmos.getFechaHora()+fechaYHoraFin+"\n");
+                writer_xml.write(fraseOriginalIn+DtoAlgoritmos.getDatosEntrada().get(0).toString()+fraseOriginalFin+"\n");
+                writer_xml.write(nombreIn+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+nombreFin+"\n");
+                writer_xml.write(tipoOperacionIn+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getTipoOperacion()+tipoOperacionFin+"\n");
+                writer_xml.write(resultadoOperacionIn+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getResultadoAlgoritmo()+resultadoOperacionFin+"\n");
+                writer_xml.write("\n");
             }
             writer_xml.write(finalXML);
             writer_xml.close();

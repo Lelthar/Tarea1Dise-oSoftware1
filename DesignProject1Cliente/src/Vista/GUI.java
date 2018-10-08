@@ -123,10 +123,9 @@ public class GUI extends javax.swing.JFrame {
        
        if(dtoRespuesta!=null){
             this.Resultados.setText("");
-            String texto="";
-            texto += "Frase Generada: \n";
-            texto += dtoRespuesta.getResultado();
-            this.Resultados.setText(texto);
+            String texto;
+            texto = dtoRespuesta.getResultado();
+            this.vFaseOrigen.setText(texto);
        }else{
            JOptionPane.showMessageDialog(this, "Respuesta null.");
        }
@@ -579,7 +578,9 @@ public class GUI extends javax.swing.JFrame {
                         datosEntrada.add(this.listaExtras.get(i)); 
                     }
                 }
-                elDTO.setDatosEntrada(datosEntrada);
+                datosEntrada.add("23");
+                datosEntrada.add("tango");
+                elDTO.setDatosEntrada(datosEntrada);          
                 elDTO.setModoAlgoritmo(modo);
                 elDTO.setAlgoritmosSeleccionados(algoritmos);
 

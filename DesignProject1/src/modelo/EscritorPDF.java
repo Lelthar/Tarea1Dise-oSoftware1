@@ -24,6 +24,8 @@ public class EscritorPDF implements iEscritor {
     
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
+        String fechaYHora = "Fecha y Hora: ";
+        String fraseOriginal = "Frase original: ";
         String nombre = "Nombre algoritmo: ";
         String tipoOperacion = "Operación: ";
         String resultadoOperacion = "Resultado: ";
@@ -36,6 +38,8 @@ public class EscritorPDF implements iEscritor {
            PdfWriter writer_pdf = PdfWriter.getInstance(document, new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora().replace(':', '-')+".pdf"));
            document.open();
            for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
+               document.add(new Paragraph(fechaYHora+DtoAlgoritmos.getFechaHora()+"\n"));
+               document.add(new Paragraph(fraseOriginal+DtoAlgoritmos.getDatosEntrada().get(0).toString()+"\n"));
                document.add(new Paragraph(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n"));
                document.add(new Paragraph(tipoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getTipoOperacion()+"\n"));
                document.add(new Paragraph(resultadoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getResultadoAlgoritmo()+"\n"));

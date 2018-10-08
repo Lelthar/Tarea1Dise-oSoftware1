@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultadoTotal>
+<FechaYHora>07-10-2018 19:28:27</FechaYHora>
+<FraseOriginal>hola mundo</FraseOriginal>
+<NombreAlgoritmo>Transposicion</NombreAlgoritmo>
+<Operación>Codificación</Operación>
+<Resultado>aloh odnum</Resultado>
+
+<FechaYHora>07-10-2018 19:28:27</FechaYHora>
+<FraseOriginal>hola mundo</FraseOriginal>
+<NombreAlgoritmo>Vigenere</NombreAlgoritmo>
+<Operación>Codificación</Operación>
+<Resultado>jrnd pwqfr</Resultado>
+
+<FechaYHora>07-10-2018 19:28:27</FechaYHora>
+<FraseOriginal>hola mundo</FraseOriginal>
+<NombreAlgoritmo>Binario</NombreAlgoritmo>
+<Operación>Codificación</Operación>
+<Resultado> 00111 01110 01011 00000* 01100 10100 01101 00011 01110</Resultado>
+
+<FechaYHora>07-10-2018 19:28:27</FechaYHora>
+<FraseOriginal>hola mundo</FraseOriginal>
+<NombreAlgoritmo>CodigoTelefonico</NombreAlgoritmo>
+<Operación>Codificación</Operación>
+<Resultado>22 43 33 01 *41 63 42 11 43 </Resultado>
+
+<FechaYHora>07-10-2018 19:28:27</FechaYHora>
+<FraseOriginal>hola mundo</FraseOriginal>
+<NombreAlgoritmo>PalabraClave</NombreAlgoritmo>
+<Operación>Codificación</Operación>
+<Resultado>bpzu gvbxp</Resultado>
+
+</ResultadoTotal>

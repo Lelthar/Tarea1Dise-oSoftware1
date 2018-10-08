@@ -1,4 +1,0 @@
-Nombre algoritmo: Transposicion
-Operación: Codificación
-Resultado: dsa
-

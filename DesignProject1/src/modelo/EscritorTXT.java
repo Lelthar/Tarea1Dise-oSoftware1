@@ -28,6 +28,8 @@ public class EscritorTXT  implements iEscritor {
     public boolean Escribir(DTOAlgoritmos DtoAlgoritmos){
         //Obtiene la fecha actual en el sistema
         Writer writer_txt;
+        String fechaYHora = "Fecha y Hora: ";
+        String fraseOriginal = "Frase original: ";
         String nombre = "Nombre algoritmo: ";
         String tipoOperacion = "Operación: ";
         String resultadoOperacion = "Resultado: ";
@@ -38,6 +40,8 @@ public class EscritorTXT  implements iEscritor {
             writer_txt = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ubicacion+DtoAlgoritmos.getFechaHora().replace(':', '-')+".txt")));
         
             for (int i = 0; i < DtoAlgoritmos.getResultadoAlgoritmo().size(); i++) {
+                writer_txt.write(fechaYHora+DtoAlgoritmos.getFechaHora()+"\n");
+                writer_txt.write(fraseOriginal+DtoAlgoritmos.getDatosEntrada().get(0).toString()+"\n");
                writer_txt.write(nombre+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getNombreAlgoritmo()+"\n");
                writer_txt.write(tipoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getTipoOperacion()+"\n");
                writer_txt.write(resultadoOperacion+DtoAlgoritmos.getResultadoAlgoritmo().get(i).getResultadoAlgoritmo()+"\n");
