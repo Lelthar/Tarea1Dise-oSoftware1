@@ -4,11 +4,29 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/frases/frases_builder/Tipo1FraseBuilder.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/PalabraClave.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Binario.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/CodigoTelefonico.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/frases/GeneradorFrase.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/iValidable.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/frases/frases_builder/Tipo3FraseBuilder.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/Frase.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorEscritor.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorAlfabeto.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/Algoritmo.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/Controlador.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/servidor/Servidor.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/vista/FrServidor.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/EscritorTXT.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/frases/FraseBuilder.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/EscritorXML.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/Alfabeto.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/EscritorPDF.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Vigenere.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/algoritmos/Transposicion.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/modelo/iEscritor.java</file>
             <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorFrase.java</file>
+            <file>file:/home/gerald/Documents/github/Tarea1Dise-oSoftware1/DesignProject1/src/controlador/GestorAlgoritmos.java</file>
         </group>
     </open-files>
 </project-private>

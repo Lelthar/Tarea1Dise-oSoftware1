@@ -44,7 +44,7 @@ public class GestorAlfabeto implements iValidable {
     }
     
     public void cargarDefault(){
-        //ArrayList<Character> simbolos = new ArrayList<>();
+        
         String defaultSimbolos = "abcdefghijklmnopqrstuvwxyz";
         ArrayList<Character> simbolos = new ArrayList<>(
                                             defaultSimbolos.chars()

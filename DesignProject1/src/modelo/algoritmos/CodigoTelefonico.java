@@ -14,8 +14,6 @@ import modelo.Algoritmo;
  * @author josed
  */
 public class CodigoTelefonico extends Algoritmo {
-    
-    private ArrayList distSimbolos ;
 
     public CodigoTelefonico(int id,String nombreAlgoritmo){
         super(id,nombreAlgoritmo);
