@@ -63,6 +63,7 @@ public class GUI extends javax.swing.JFrame {
      * Metodo para cargar los alfabetos existentes
      */
     public void cargarAlfabetosGUI(){
+        this.cbAlfabeto.removeAllItems();
         ArrayList<String> algorimos = Uigui.obtenerAlfabetos();
         for (int i=0;i<algorimos.size();i++) {
            this.cbAlfabeto.addItem(algorimos.get(i));
@@ -181,6 +182,7 @@ public class GUI extends javax.swing.JFrame {
         jButton_guardarExtra = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         lbExtras = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 255));
@@ -227,7 +229,7 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -494,6 +496,13 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -515,8 +524,10 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(jButton_generarFrase)
-                                .addGap(76, 76, 76)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton_generarFrase))
+                                .addGap(63, 63, 63)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(137, 137, 137)
@@ -539,7 +550,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jButton_generarFrase)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonEjecutar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEjecutar)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -696,6 +709,12 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_guardarExtraActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        cargarAlgoritmosGUI();
+        cargarAlfabetosGUI();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -740,6 +759,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JComboBox<String> cbAlfabeto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEjecutar;
     private javax.swing.JButton jButton_generarFrase;
     private javax.swing.JButton jButton_guardarExtra;
